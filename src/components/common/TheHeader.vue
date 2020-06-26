@@ -20,6 +20,7 @@
               :key="index",
               :class="{ 'has-dropdown': hasDropdown(item.items) }")
               JLink(:linkUrl="item.primary.nav_link",
+                :linkAnchor="item.primary.nav_anchor"
                 :linkClasses="hasDropdown(item.items) ? 'navbar-item navbar-link' : 'nav-item'",
                 :linkIcon="item.primary.nav_icon") {{ item.primary.nav_text }}
               .navbar-dropdown(v-if="hasDropdown(item.items)")
@@ -27,20 +28,19 @@
                   :key="index + index2",
                   :class="{ 'has-dropdown': hasDropdown(item2.items) }")
                   JLink(:linkUrl="item2.primary.nav_link",
+                    :linkAnchor="item2.primary.nav_anchor"
                     :linkClasses="hasDropdown(item2.items) ? 'navbar-item navbar-link' : 'nav-item'",
                     :linkIcon="item2.primary.nav_icon") {{ item2.primary.nav_text }}
                   .navbar-dropdown(v-if="hasDropdown(item2.items)")
                     .navbar-item(v-for="(item3, index3) in item2.items",
                       :key="index + index2 + index3")
                       JLink(:linkUrl="item3.nav_link",
+                      :linkAnchor="item3.nav_anchor"
                       :linkIcon="item3.nav_icon") {{ item3.nav_text }}
           .navbar-end
             .navbar-item
               .buttons
-                JLink(:linkUrl="{url: 'https://google.com'}" linkClasses="button is-primary")
-                  strong Sign Up
-                JLink(:linkUrl="{url: 'https://google.it'}" linkClasses="button is-light")
-                  strong Log In
+                JLink(:linkUrl="{url: 'tel:+39043421121'}" linkIcon="phone" linkClasses="") 0434 21121
 </template>
 
 <script lang="ts">
@@ -83,16 +83,18 @@ export default class TheHeaderComponent extends Vue {
 </script>
 
 <style lang="scss">
-.topbar {
-  background: $light;
-  .columns {
-    margin-bottom: 0;
-  }
+.navbar {
+  background-color: $primary;
 }
 .is-sticky {
   position: sticky;
   top: 0;
   z-index: 2;
+}
+
+.navbar-item {
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 @media screen and (min-width: 1024px) {

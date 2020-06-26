@@ -1,6 +1,6 @@
 <template lang="pug">
   .jampstart(:class="$route.name")
-    TheTopbar
+    //- TheTopbar
     TheHeader
     nuxt
     TheFooter

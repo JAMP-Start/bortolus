@@ -1,7 +1,7 @@
 <template lang="pug">
   section.section.gallery(:class="`gallery--${primary.type} ${primary.section_classes}`")
     .container
-      .gallery__title.content
+      .gallery__title.content(v-if="primary.title_show")
         prismic-rich-text(:field="primary.title")
       .gallery__images.swiper-container(:id="primary.gallery_id")
         .swiper-wrapper
@@ -9,6 +9,8 @@
             figure.image-cover
               picture
                 prismic-image(:field="item.image")
+            .gallery__images__caption(v-if="item.caption")
+              prismic-rich-text(:field="item.caption")
         .swiper-button-prev(:id="`prev-${primary.gallery_id}`" v-if="!isGrid")
         .swiper-button-next(:id="`next-${primary.gallery_id}`" v-if="!isGrid")
         .swiper-pagination(:id="`pagination-${primary.gallery_id}`" v-if="!isGrid")
@@ -43,7 +45,7 @@ export default class ImageGalleryComponent extends Vue {
         nextEl: '#next-' + this.primary.gallery_id,
         prevEl: '#prev-' + this.primary.gallery_id
       },
-      effect: 'fade',
+      effect: 'slide',
       speed: 500,
       fadeEffect: {
         crossFade: true
@@ -132,6 +134,18 @@ export default class ImageGalleryComponent extends Vue {
 .gallery {
   &__images {
     max-height: 90vh;
+    &__caption {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      z-index: 1;
+      background-color: rgba($primary,.7);
+      padding: 1.5rem;
+      font-size: 2rem;
+      color: $white;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
   }
   &--carousel {
     .gallery__images {
@@ -164,19 +178,6 @@ export default class ImageGalleryComponent extends Vue {
       figure {
         min-height: 300px;
       }
-    }
-  }
-}
-#brands {
-  figure img {
-    object-fit: contain;
-  }
-  .swiper-slide {
-    width: 20%;
-    height: 120px;
-    @media screen and (max-width: 768px) {
-      width: 50%;
-      height: 120px;
     }
   }
 }

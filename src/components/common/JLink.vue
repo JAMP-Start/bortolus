@@ -1,8 +1,17 @@
 <template lang="pug">
-  nuxt-link(v-if="!isExternal && isSet",
+  nuxt-link(v-if="!isExternal && !isAnchor && isSet",
     :to="getLinkUrl(linkUrl)",
     :class="[linkClasses, { 'has-icon': linkIcon }]")
       span.icon(v-if="linkIcon")
+        i(:class="linkIcon")
+      span
+        slot
+  nuxt-link(v-else-if="isAnchor",
+    :to="{path: '/', hash: this.linkAnchor}",
+    v-scroll-to="{el: `#${this.linkAnchor}`}"
+    :class="[linkClasses, { 'has-icon': linkIcon }]",
+    :target="linkUrl.target || false")
+      span.icon.jicon(v-if="linkIcon")
         i(:class="linkIcon")
       span
         slot
@@ -28,6 +37,9 @@ export default class JLinkComponent extends Vue {
   linkUrl!: object
 
   @Prop()
+  linkAnchor!: string
+
+  @Prop()
   linkClasses!: string
 
   @Prop()
@@ -43,6 +55,13 @@ export default class JLinkComponent extends Vue {
 
   get isSet(): boolean {
     return this.getLinkUrl(this.linkUrl).length > 0
+  }
+
+  get isAnchor(): boolean {
+    if (!this.linkAnchor) {
+      return false
+    }
+    return this.linkAnchor.length > 0
   }
 
   getLinkUrl(data: any): string {

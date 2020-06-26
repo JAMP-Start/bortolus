@@ -6,7 +6,7 @@ p {
 
 .content {
     h1, h2, h3, h4, h5, h6 {
-        color: $primary;
+        color: $black;
     }
     ul {
         margin-left: 0;
@@ -34,8 +34,9 @@ p {
 // Links
 a {
     &:hover {
-        color: $secondary;
+        color: $black;
         background: none;
+        text-decoration: underline;
     } 
     &.arrow {
         font-weight: 600;
