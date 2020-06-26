@@ -1,0 +1,55 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "uid"
+      }
+    },
+    "logo": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 500
+        },
+        "thumbnails": [],
+        "label": "Logo"
+      }
+    },
+    "navigation": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": [
+          "menu",
+          "navigation"
+        ],
+        "label": "Navigation"
+      }
+    },
+    "topbar_left": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "allowTargetBlank": true,
+        "label": "Topbar Left"
+      }
+    },
+    "topbar_center": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "allowTargetBlank": true,
+        "label": "Topbar Center"
+      }
+    },
+    "topbar_right": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "allowTargetBlank": true,
+        "label": "Topbar Right"
+      }
+    }
+  }
+}

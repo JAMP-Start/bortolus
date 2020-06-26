@@ -1,0 +1,110 @@
+{
+  "Navigation" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Navigation ID"
+      }
+    },
+    "navigation_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading3, heading4, heading5, heading6",
+        "label" : "Navigation Title"
+      }
+    },
+    "body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : { },
+        "choices" : {
+          "1st_level" : {
+            "type" : "Slice",
+            "fieldset" : "1st Level",
+            "description" : "1st Level Nav item",
+            "icon" : "filter_1",
+            "display" : "list",
+            "non-repeat" : {
+              "nav_link" : {
+                "type" : "Link",
+                "config" : {
+                  "allowTargetBlank" : true,
+                  "label" : "Nav Link"
+                }
+              },
+              "nav_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Nav Text",
+                  "placeholder" : "Nav text..."
+                }
+              },
+              "nav_icon" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Nav Icon",
+                  "placeholder" : "Icon Class"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "2nd_level" : {
+            "type" : "Slice",
+            "fieldset" : "2nd Level",
+            "description" : "2nd Level Nav item",
+            "icon" : "filter_2",
+            "display" : "list",
+            "non-repeat" : {
+              "nav_link" : {
+                "type" : "Link",
+                "config" : {
+                  "label" : "Nav Link",
+                  "allowTargetBlank" : true
+                }
+              },
+              "nav_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Nav Text",
+                  "placeholder" : "Nav Text..."
+                }
+              },
+              "nav_icon" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Nav Icon",
+                  "placeholder" : "Icon class"
+                }
+              }
+            },
+            "repeat" : {
+              "nav_link" : {
+                "type" : "Link",
+                "config" : {
+                  "allowTargetBlank" : true,
+                  "label" : "Nav Link"
+                }
+              },
+              "nav_text" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Nav Text",
+                  "placeholder" : "Link Text..."
+                }
+              },
+              "nav_icon" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Nav Icon",
+                  "placeholder" : "Icon class"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

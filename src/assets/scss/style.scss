@@ -1,0 +1,50 @@
+@import "./resources";
+
+$font-primary: 'Roboto', sans-serif;
+
+body {
+  text-rendering: optimizeLegibility;
+  font-family: $font-primary;
+  color: $black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+// Transitions
+.page-enter-active {
+  transition: opacity 0.4s ease-out;
+}
+
+.page-leave-active {
+  transition: opacity 0.4s ease-in;
+}
+
+.page-enter,
+.page-leave-active {
+  opacity: 0.25;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition-duration: 0.5s;
+  transition-property: height, opacity, transform;
+  transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
+  overflow: hidden;
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate(2em, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+  opacity: 0;
+  transform: translate(-2em, 0);
+}

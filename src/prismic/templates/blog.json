@@ -1,0 +1,71 @@
+{
+    "Main" : {
+      "uid" : {
+        "type" : "UID",
+        "config" : {
+          "label" : "Page ID"
+        }
+      },
+      "title" : {
+        "type" : "StructuredText",
+        "config" : {
+          "single" : "heading1",
+          "label" : "Page Title"
+        }
+      },
+      "content" : {
+        "type" : "StructuredText",
+        "config" : {
+          "multi" : "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+          "allowTargetBlank" : true,
+          "label" : "Content"
+        }
+      },
+      "image" : {
+        "type" : "Image",
+        "config" : {
+          "constraint" : {
+            "width" : 2000
+          },
+          "thumbnails" : [ ],
+          "label" : "Image"
+        }
+      },
+      "show_header" : {
+        "type" : "Boolean",
+        "config" : {
+          "placeholder_false" : "No",
+          "placeholder_true" : "Yes",
+          "default_value" : false,
+          "label" : "Show Header"
+        }
+      }
+    },
+    "SEO" : {
+      "seo_title" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "SEO Title"
+        }
+      },
+      "seo_description" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "SEO Description"
+        }
+      },
+      "seo_keywords" : {
+        "type" : "Text",
+        "config" : {
+          "label" : "SEO Keywords"
+        }
+      },
+      "seo_image" : {
+        "type" : "Link",
+        "config" : {
+          "select" : "media",
+          "label" : "SEO Image"
+        }
+      }
+    }
+  }

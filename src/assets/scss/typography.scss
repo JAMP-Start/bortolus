@@ -1,0 +1,141 @@
+// Base
+p {
+    color: $black;
+    line-height: 2;
+}
+
+.content {
+    h1, h2, h3, h4, h5, h6 {
+        color: $primary;
+    }
+    ul {
+        margin-left: 0;
+        line-height: 2;
+        li {
+            list-style-type: none;
+            padding-left: 2rem;
+            position: relative;
+            &:before {
+                content: '';
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: $primary;
+                width: 16px;
+                height: 16px;
+                border-radius: 100%;
+            }
+        }
+    }
+}
+
+// Links
+a {
+    &:hover {
+        color: $secondary;
+        background: none;
+    } 
+    &.arrow {
+        font-weight: 600;
+        &:after {
+            content: '⟶';
+            margin-left: .5rem;
+        }
+    } 
+}
+
+// Icons
+.jicon {
+    i {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: inline-block;
+        width: 1.25rem;
+        height: 1.25rem;
+        &.is-medium{
+            padding: 1rem;
+            margin-right: 1rem;
+        }
+        &.email {
+            background-image: url('/svg/email.svg');
+        }
+        &.email2 {
+            background-image: url('/svg/email2.svg');
+        }
+        &.phone {
+            background-image: url('/svg/phone.svg');
+        }
+        &.phone2 {
+            background-image: url('/svg/phone2.svg');
+        }
+        &.hours {
+            background-image: url('/svg/hours.svg');
+        }
+        &.hours3 {
+            background-image: url('/svg/hours3.svg');
+        }
+        &.pin {
+            background-image: url('/svg/pin.svg');
+        }
+        &.facebook {
+            background-image: url('/svg/facebook.svg');
+        }
+        &.instagram {
+            background-image: url('/svg/instagram.svg');
+        }
+        &.linkedin {
+            background-image: url('/svg/linkedin.svg');
+        }
+        &.whatsapp {
+            background-image: url('/svg/whatsapp.svg');
+        }
+        &.calendar {
+            background-image: url('/svg/calendar.svg');
+        }
+    }
+}
+
+// Titles
+.title {
+    &--special {
+        position: relative;
+        max-widht: 100%;
+        // overflow: hidden;
+        h2 {
+            position:relative;
+            color: $primary;
+            z-index: 1;
+            padding-bottom: 2.5rem;
+            font-size: 2.25rem;
+            &:after {
+                content: '';
+                width: 2rem;
+                height: 2px;
+                background-color: $secondary;
+                display: inline-block;
+                margin-left: 1rem;
+            }
+        }
+        span {
+            position: absolute;
+            top: -2rem;
+            margin-left: 1.25rem;
+            font-size: 6.5rem;
+            color: $lighter;
+            font-weight: 700;
+            z-index: 0;
+            white-space: nowrap;
+        }
+    }
+}
+.has-background-light .title--special span {
+    color: rgba($black, .03);
+}
+
+//Texts
+.has-text-secondary {
+    color: $secondary;
+  }
