@@ -1,7 +1,8 @@
 <template lang="pug">
     section.section
       h4 Richiedi maggiori informazioni
-      FormulateForm(v-model="formData" :name="formType" netlify)
+      FormulateForm(v-model="formData" :name="formType" @submit="formSubmit" netlify)
+        FormulateInput(type="hidden" name="type")
         FormulateInput(type="hidden" name="ref")
         FormulateInput(type="text" name="nome" placeholder="il tuo nome" validation="required")
         FormulateInput(type="tel" name="telefono" placeholder="il tuo numero di telefono" validation="required|number")
@@ -21,11 +22,16 @@ export default class JFormComponent extends Vue {
   @Prop()
   formType!: string
 
-@Prop()
+  @Prop()
   formRef!: string
 
   formData: any = {
+    type: this.formType,
     ref: this.formRef
+  }
+
+  formSubmit () {
+    console.log(this.formData)
   }
 
 }
