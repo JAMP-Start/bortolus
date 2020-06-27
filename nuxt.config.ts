@@ -36,7 +36,8 @@ const config: Configuration = {
   ],
   plugins: [
     '~/plugins/components.js',
-    '~/plugins/filters.js'
+    '~/plugins/filters.js',
+    '~/plugins/vue-formulate'
   ],
   modules: [
     '@nuxtjs/prismic',

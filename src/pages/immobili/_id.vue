@@ -43,6 +43,7 @@
         Slice(v-for="(slice, index) in data.body",
           :data="slice",
           :key="index")
+        JForm(formType="immobile" formRef="123")
       section.section.post__footer.has-text-centered
         JLink(:linkUrl="{uid:'immobili'}" linkClasses="arrow") Tutti gli immobili
 </template>
@@ -52,12 +53,13 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import Slice from '~/components/sections/Slice.vue'
 import JSlider from '~/components/common/JSlider.vue'
+import JForm from '~/components/common/JForm.vue'
 
 import seo from '~/utils/seo.ts'
 
 @Component({
   components: {
-    Slice, JSlider
+    Slice, JSlider, JForm
   },
   head() {
     const { data, lang } = this.$data
