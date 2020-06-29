@@ -9,6 +9,6 @@ export const actions: ActionTree<any, any> = {
     await dispatch('strings/getData', lang)
     await dispatch('footer/getData', lang)
     await dispatch('header/getData', lang)
-    await dispatch('social/getData', lang)
+    // await dispatch('social/getData', lang)
   }
 }

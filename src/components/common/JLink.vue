@@ -65,8 +65,8 @@ export default class JLinkComponent extends Vue {
   }
 
   getLinkUrl(data: any): string {
-    if (data.type === 'post') {
-      return '/blog/' + data.uid
+    if (data.type === 'immobile') {
+      return '/immobili/' + data.uid
     } else {
       return data.uid ? '/' + data.uid : data.url || ''
     }

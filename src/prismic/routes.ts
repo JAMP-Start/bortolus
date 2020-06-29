@@ -5,12 +5,12 @@ let api: ResolvedApi
 
 export default async function routes(): Promise<any> {
   try {
-    api = await Prismic.getApi('https://jampstart.cdn.prismic.io/api/v2')
+    api = await Prismic.getApi('https://bortolus.cdn.prismic.io/api/v2')
 
-    const posts = await postsResolver()
+    const immobili = await immobiliResolver()
     const pages = await pagesResolver()
 
-    return [posts, pages].reduce((acc: string[], paths: string[]) => {
+    return [immobili, pages].reduce((acc: string[], paths: string[]) => {
       return acc.concat(paths)
     }, [])
   } catch (e) {
@@ -18,12 +18,12 @@ export default async function routes(): Promise<any> {
   }
 }
 
-async function postsResolver(): Promise<string[]> {
+async function immobiliResolver(): Promise<string[]> {
   const { results } = await api.query(
-    Prismic.Predicates.at('document.type', 'post'),
+    Prismic.Predicates.at('document.type', 'immobile'),
     { pageSize: 100, fetch: ['title'], lang: '*' }
   )
-  return results.map(post => `/blog/${post.uid}`)
+  return results.map(immobile => `/immobili/${immobile.uid}`)
 }
 
 async function pagesResolver(): Promise<string[]> {

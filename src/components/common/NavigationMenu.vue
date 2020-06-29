@@ -1,6 +1,6 @@
 <template lang="pug">
   .menu(:class="navigation.id")
-    //- p.menu-label(v-if="navigation.navigation_title") {{ navigation.navigation_title[0].text }}
+    p.menu-label(v-if="navigation.navigation_title") {{ navigation.navigation_title[0].text }}
     ul.menu-list(:class="{'is-flex': isSocial}")
       li(v-for="(item, index) in navigation.body", :key="index")
         JLink(:linkUrl="item.primary.nav_link", linkClasses="navbar-item has-text-primary",

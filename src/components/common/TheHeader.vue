@@ -89,7 +89,7 @@ export default class TheHeaderComponent extends Vue {
 .is-sticky {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 4;
 }
 
 .navbar-item {

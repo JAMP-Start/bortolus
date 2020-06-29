@@ -1,5 +1,5 @@
 <template lang="pug">
-  footer.footer.has-background-light
+  footer.footer.has-background-primary
     .footer__columns
       .columns.container
         .column(v-for="(column, index) in footerData.body", :key="index")
@@ -8,10 +8,10 @@
           .footer__content(v-if="column.slice_type === 'navigation'")
             NavigationMenu(:navigation="column.primary")
     .footer__bottom
-      .columns.container
-        .column.is-4.has-text-center.has-text-left-desktop
-          SocialIcons
-        .column.is-8.has-text-centered.has-text-right-desktop
+      .container.columns
+        .column.is-6.has-text-center.has-text-left-desktop
+          span privacy links
+        .column.is-6.has-text-centered.has-text-right-desktop
           prismic-rich-text(v-if="footerData.footer_bottom", :field="footerData.footer_bottom")
 </template>
 
@@ -41,7 +41,7 @@ export default class TheFooterComponent extends Vue {
 .footer {
   padding: 0;
   margin-top: 1rem;
-  color: $primary;
+  color: $black;
   &__columns {
     padding: 3rem 1.5rem 1.5rem 1.5rem;
     img {
@@ -50,7 +50,6 @@ export default class TheFooterComponent extends Vue {
     }
   }
   &__bottom {
-    background-color: $white;
     padding: .75rem 0 1rem 0;
     margin-top: 1.5rem;
     p, a {

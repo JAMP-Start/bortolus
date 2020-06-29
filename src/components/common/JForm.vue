@@ -8,6 +8,9 @@
         FormulateInput(type="tel" name="telefono" placeholder="il tuo numero di telefono" validation="required|number")
         FormulateInput(type="email" name="email" placeholder="la tua e-mail" validation="required|email")
         FormulateInput(type="textarea" name="messaggio" placeholder="scrivi qui il tuo messaggio" input-class="textarea" validation="required")
+        FormulateInput(type="checkbox" name="privacy" element-class="checkbox" input-class="checkbox" validation="required")
+          template(#label) Acconsento al trattamento dei dati
+            a(target="_blank" href="/privacy-policy") Privacy Policy
         FormulateInput(type="submit" name="Invia la tua richiesta" input-class="button is-primary")
 </template>
 

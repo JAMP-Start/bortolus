@@ -1,8 +1,8 @@
 {
-  "name": "jamp-start",
+  "name": "bortolus",
   "version": "1.0.0",
   "description": "Nuxt website boilerplate with Prismic",
-  "author": "Alessio Zanut",
+  "author": "Andrea Vigani",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",

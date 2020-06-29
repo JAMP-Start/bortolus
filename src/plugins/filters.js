@@ -16,3 +16,9 @@ Vue.filter('excerpt', function (value) {
     return value
   }
 })
+
+Vue.filter('label', function (value) {
+  if (value) {
+    return value.replace('details_', '').replace(/-/g, ' ')
+  }
+})
