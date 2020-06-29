@@ -1,5 +1,5 @@
 <template lang="pug">
-  header.is-sticky
+  header
     nav.navbar(role="navigation", aria-label="main navigation")
       .container
         .navbar-brand
@@ -90,6 +90,10 @@ export default class TheHeaderComponent extends Vue {
   position: sticky;
   top: 0;
   z-index: 4;
+}
+
+.navbar-brand img {
+  max-height: 80px;
 }
 
 .navbar-item {

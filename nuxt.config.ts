@@ -14,7 +14,7 @@ const config: Configuration = {
       { hid: 'description', name: 'description', content: 'Bortolus è un agenzia immobiliare di Pordenone. Tantissime offerte immobiliari vi aspettano.' }
     ],
     link: [
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,600,700&display=swap' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,600,700&display=swap' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [{

@@ -15,9 +15,9 @@
             .buttons.has-addons
               .button(@click="setTipologiaImmobile('residenziale')" :class="{'is-active': tipologiaImmobile === 'residenziale'}") Residenziale
               .button(@click="setTipologiaImmobile('non residenziale')" :class="{'is-active': tipologiaImmobile === 'non residenziale'}") Non residenziale
-        .content(v-if="!$fetchState.pending")
+        .content.mt-4(v-if="!$fetchState.pending")
           .columns.is-multiline(v-if="immobili.length")
-            .column.is-one-third(v-for="(immobile, index) in immobili" :key="index")
+            .column.is-one-quarter(v-for="(immobile, index) in immobili" :key="index")
               ImmobileCard(:data="immobile")
           div(v-else) Nessun immobile trovato.
         div(v-else) Sto cercando...
@@ -77,7 +77,7 @@ export default class ImmobiliPage extends Vue {
         queryParam = 'my.immobile.tipologia_annuncio'
         queryValue = query.tipologia_annuncio.toString()
       }
-      const { total_pages, results } = await this.$prismic.api.query(Prismic.Predicates.at(queryParam, queryValue), { pageSize: 12, page: query.page || 1, orderings: '[my.post.date desc]' })
+      const { total_pages, results } = await this.$prismic.api.query(Prismic.Predicates.at(queryParam, queryValue), { orderings: '[my.post.date desc]' })
       this.immobiliData = results
       this.immobili = results
       this.filterByTipologiaImmobile()

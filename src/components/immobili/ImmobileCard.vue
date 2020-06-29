@@ -35,7 +35,9 @@ export default class ImmobileCardComponent extends Vue {
 
 <style lang="scss" scoped>
 .immobile {
+  display: block;
   &:hover {
+    background-color: $primary-light;
     text-decoration: none!important;
   }
   &__image {
@@ -43,14 +45,14 @@ export default class ImmobileCardComponent extends Vue {
   }
   &__title {
     text-transform: uppercase;
-    padding: 2rem 0 0 0;
   }
   &__date {
     color: $secondary;
     font-weight: 600;
   }
   &__content {
-    margin-bottom: 3rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
     color: $black!important;
   }
   &__price {
