@@ -1,9 +1,9 @@
 <template lang="pug">
-  div.blog-page
+  div.immobili-page
     PageHeader(:data="data")
-    section.section
+    section.section.mt-0
       .container
-        .filters
+        .filters.mb-4
           .filters__filter
             label.menu-label Tipologia Annuncio
             .buttons.has-addons(@click="setTipologiaImmobile('')")

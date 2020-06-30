@@ -130,36 +130,27 @@ export default class ImageGalleryComponent extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .gallery {
   &__images {
     max-height: 90vh;
+    position: relative;
     &__caption {
       position: absolute;
       top: 50%;
       left: 0;
       z-index: 1;
-      background-color: rgba($primary,.7);
-      padding: 1.5rem;
-      font-size: 2rem;
-      color: $white;
+      background-color: rgba($primary,.6);
+      p {
+        font-size: 3rem;
+        line-height: 1.5;
+        color: $white;
+      }
       text-transform: uppercase;
       font-weight: 700;
-    }
-  }
-  &--carousel {
-    .gallery__images {
-      max-height: 60vh;
-
-      .swiper-slide {
-        max-width: 100%;
-        width: auto;
-
-        img {
-          position: relative;
-          max-height: 60vh;
-        }
-      }
+      text-align: right;
+      max-width: 60%;
+      padding: .5rem 1rem .5rem 2rem;
     }
   }
   &--slider {
@@ -169,16 +160,6 @@ export default class ImageGalleryComponent extends Vue {
   }
   .swiper-lazy-preloader {
     opacity: 0.5;
-  }
-  &--grid {
-    .gallery__images .swiper-wrapper {
-      display: inline-grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-gap: 1rem;
-      figure {
-        min-height: 300px;
-      }
-    }
   }
 }
 </style>

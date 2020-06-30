@@ -3,68 +3,102 @@
     article.immobile
       .content
         section.section.my-0
-          prismic-rich-text(:field="data.title")
-          div rif. {{ data.rif }}
-          div.has-text-weight-semibold € {{ data.price }}
+          .is-flex.is-space-between
+            div
+              prismic-rich-text(:field="data.title")
+              div.has-text-weight-bold.is-size-4  rif. {{ data.rif }}
+            div.has-text-weight-bold.is-size-2  € {{ data.price }}
         .immobile__details
+          .immobile__details__item(v-if="data.details_superficie")
+            .immobile__details__item__icon.jicon.is-large
+              i.superficie
+            span {{ data.details_superficie }} m
+              sup 2
           .immobile__details__item
-            .immobile__details__item__icon X
-            span {{ data.details_superficie }} mq
-          .immobile__details__item
-            .immobile__details__item__icon X
+            .immobile__details__item__icon.jicon.is-large
+              i.camere
             span {{ data.details_camere }} camere
-          .immobile__details__item
-            .immobile__details__item__icon X
+          .immobile__details__item(v-if="data.details_bagni")
+            .immobile__details__item__icon.jicon.is-large
+              i.bagni
             span {{ data.details_bagni }} bagni
-          .immobile__details__item
-            .immobile__details__item__icon X
-            span {{ data.details_piano }}° piano
+          .immobile__details__item(v-if="data.details_piano")
+            .immobile__details__item__icon.jicon.is-large
+              i.piano
+            span {{ data.details_piano }}
+          .immobile__details__item(v-if="data.details_box")
+            .immobile__details__item__icon.jicon.is-large
+              i.boxauto
+            span {{ data.details_box }}
         .immobile__tabs.my-4
           .immobile__tabs__tab(v-if="activeTab === 1")
-            JSlider(:id="`foto-${data.rif}`" :images="data.images")
+            JSlider(:id="`foto-${data.rif}`" :images="data.images" classes="is-large")
           .immobile__tabs__tab(v-if="hasPlanimetrie && activeTab === 2")
-            JSlider(:id="`planimetria-${data.rif}`" :images="data.images1")
+            JSlider(:id="`planimetria-${data.rif}`" :images="data.images1" classes="is-large")
           .immobile__tabs__tab(v-if="activeTab === 3") Virtual Tour
           .immobile__tabs__tab(v-if="activeTab === 4") Mappa
+          .immobile__tabs__tab(v-if="activeTab === 5") Street View
         .immobile__details.immobile__details__links
           .immobile__details__item(@click="activeTab = 1" :class="{'active': activeTab === 1}")
-            .immobile__details__item__icon X
+            .immobile__details__item__icon.jicon.is-large
+              i.foto
             span {{data.images.length }} foto
           .immobile__details__item(v-if="hasPlanimetrie" @click="activeTab = 2" :class="{'active': activeTab === 2}")
-            .immobile__details__item__icon X
+            .immobile__details__item__icon.jicon.is-large
+              i.planimetrie
             span {{data.images1.length }} planimetrie
           .immobile__details__item(@click="activeTab = 3" :class="{'active': activeTab === 3}")
-            .immobile__details__item__icon X
+            .immobile__details__item__icon.jicon.is-large
+              i.virtualtour
             span virtual tour
           .immobile__details__item(@click="activeTab = 4" :class="{'active': activeTab === 4}")
-            .immobile__details__item__icon X
+            .immobile__details__item__icon.jicon.is-large
+              i.mappa
             span mappa
+          .immobile__details__item(@click="activeTab = 5" :class="{'active': activeTab === 5}")
+            .immobile__details__item__icon.jicon.is-large
+              i.streetview
+            span street view
         section.section
           h2 Descrizione Immobile
-          prismic-rich-text(v-if="data.content" :field="data.content")
+          prismic-rich-text.section__content(v-if="data.content" :field="data.content")
         section.section
           h2 Dettagli Immobile
-          ul.immobile__table
-            li(v-for="(value, key) in details" :key="key")
-              strong {{ key | label }}
-              span {{ value }}
-        section.section
-          h2 Caratteristiche Immobile
+          .section__content
+            ul.immobile__table
+              li(v-for="(value, key) in details" :key="key")
+                strong {{ key | label }}
+                span {{ value }}
         section.section
           h2 Classe Energetica
-          .immobile__classeenergetica__wrapper
-            .immobile__classeenergetica(:class="data.classe_energetica_class.toLowerCase()")
-              span(v-if="data.classe_energetica_class") Classe {{ data.classe_energetica_class }}
-              span(v-else) Non disponibile
-          div
-            strong Indice prestazione energetica
-            span {{ data.classe_energetica_index }}
+          .columns
+            .column
+              .immobile__classeenergetica__wrapper
+                .immobile__classeenergetica(:class="data.classe_energetica_class.toLowerCase()")
+                  span(v-if="data.classe_energetica_class") Classe {{ data.classe_energetica_class }}
+                  span(v-else) Non disponibile
+            div.column(v-if="data.classe_energetica_index")
+              strong Indice prestazione energetica
+              br
+              span {{ data.classe_energetica_index }}
+        section.section(v-if="data.caratteristiche")
+          h2 Caratteristiche Immobile
+          .buttons.immobile__caratteristiche
+            .button(v-for="(c, index) in data.caratteristiche.split(',')" :key="`c-${index}`") {{ c }}
         section.section
           h2 Posizione
-        section.section
+          address.mt-4
+            h4 Indirizzo:
+            prismic-rich-text(:field="data.indirizzo")
+            br
+            strong.mr-2 Zona:
+            span {{ data.zona }}
+        section.section#form
+          h2 Ti interessa questo immobile?
           JForm(formType="immobile" formRef="123")
       section.section.post__footer.has-text-centered
         JLink(:linkUrl="{uid:'immobili'}" linkClasses="arrow") Tutti gli immobili
+    .form__cta.fadeInUp(v-show="showCta" v-scroll-to="{el: `#form`}") Ti interessa questo immobile? Contattaci ⟶
 </template>
 
 <script lang="ts">
@@ -89,6 +123,7 @@ export default class ImmobilePage extends Vue {
   data: any = {}
   activeTab: number = 1
   lang: string = 'en'
+  showCta: boolean = true
 
   get hasPlanimetrie(): any {
     return this.data.images1.length
@@ -99,6 +134,17 @@ export default class ImmobilePage extends Vue {
       obj[key] = this.data[key]
       return obj
     }, {})
+  }
+
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  handleScroll() {
+    const form:any = document.getElementById('form')
+    if (form) {
+      form.offsetTop < window.scrollY + 500 ? this.showCta = false : this.showCta = true
+    }
   }
 
   async asyncData({ app, params, error }): Promise<any> {
@@ -119,16 +165,21 @@ export default class ImmobilePage extends Vue {
     &__details {
       width: 100%;
       display: inline-grid;
-      grid-gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+      grid-gap: .25rem;
+      @media only screen and (min-width: 768px){
+        grid-gap: 1rem;
+      }
+      grid-template-columns: repeat(auto-fit, minmax(10%, 1fr));
       &__item {
-        &__icon {
-          font-size: 4rem;
-        }
         text-align: center;
         background-color: $primary-light;
-        padding: 1rem;
         font-weight: 600;
+        font-size: 12px;
+        padding: .25rem;
+        @media only screen and (min-width: 768px){
+          padding: 1rem;
+          font-size: 1.2rem;
+        }
       }
       &__links {
         .immobile__details__item {
@@ -149,6 +200,7 @@ export default class ImmobilePage extends Vue {
     }
     &__table {
       display: inline-grid;
+      align-items: center;
       grid-template-columns: 1fr;
       grid-gap: 1rem;
       width: 100%;
@@ -165,6 +217,11 @@ export default class ImmobilePage extends Vue {
           text-transform: capitalize;
         }
       }
+    }
+    &__caratteristiche .button {
+      text-transform: capitalize;
+      font-weight: 400;
+      font-size: 1rem;
     }
     &__classeenergetica {
       &__wrapper {
@@ -261,4 +318,41 @@ export default class ImmobilePage extends Vue {
       }
     }
   }
+  .form__cta {
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+    bottom: 1rem;
+    @media only screen and (max-width: 480px){
+      left: 0;
+      bottom: 0;
+    }
+    background-color: $secondary;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    color: $white;
+    z-index: 5;
+    &:hover {
+      background-color: $secondary-dark;
+    }
+  }
+
+@keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 0.75rem, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+.fadeInUp {
+  animation-duration: 0.75s;
+  animation-fill-mode: both;
+  animation-delay: 1.5s;
+  opacity: 0;
+  animation-name: fadeInUp;
+}
 </style>

@@ -1,0 +1,13 @@
+.is-space-between {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.is-space-evenly {
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: row wrap;
+}

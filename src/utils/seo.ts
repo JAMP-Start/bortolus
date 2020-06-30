@@ -2,7 +2,7 @@ import PrismicDom from 'prismic-dom'
 import { isEmpty } from 'lodash'
 
 const languages = {
-  it: 'Ita Description',
+  it: 'Mediazioni immobiliari',
   en: 'Eng Description'
 }
 const base = process.env.DOMAIN
@@ -14,7 +14,7 @@ export default (data: any, lang: string, route: string): any => {
     }
   }
 
-  const title = data.seo_title || PrismicDom.RichText.asText(data.title)
+  const title = `${data.seo_title || PrismicDom.RichText.asText(data.title)}`
   const description = data.seo_description || (data.page_subtitle ? PrismicDom.RichText.asText(data.page_subtitle) : languages[lang])
 
   let image = `${base}/images/placeholder.png`

@@ -2,10 +2,10 @@ $gap-size: 1.5rem;
 
 .section {
     position: relative;
-    margin: $gap-size auto;
+    // margin: $gap-size auto;
     overflow: hidden;
     @media screen and (min-width: 769px) {
-        margin: calc(#{$gap-size} * 2) auto;
+        // margin: calc(#{$gap-size} * 2) auto;
     }
 }
 // Hero
@@ -59,35 +59,11 @@ $gap-size: 1.5rem;
             color: $black!important;
         }
     }
-    &-secondary {
-        * {
-            color: $primary!important;
-        }
-        &-1 { 
-            background-color: $secondary-1;
-        }
-        &-2 { 
-            background-color: $secondary-2;
-        }
-        &-3 { 
-            background-color: $secondary-3; 
-        }
-    }
 }
-.has-gradient {
-    position: relative;
-    &.has-gradient-left-to-right:before {
-        background: transparent linear-gradient(90deg, $primary 0%, rgba($primary,0) 100%);
-    }
-    &.has-gradient-left-to-right--blue {
-        background: transparent linear-gradient(90deg, $primary 0%, $primary-light 100%);
-    }
-    &.has-gradient-bottom-to-top:before {
-        background: transparent linear-gradient(0, $primary 0%, rgba($primary,0) 100%);
-    }
-    &.has-gradient-light-to-white {
-        background: transparent linear-gradient(0, $white 55%, $light 45%);
-    }
+
+.section__content {
+    background-color: $primary-light;
+    padding: 1rem;
 }
 
 .is-overlapped {

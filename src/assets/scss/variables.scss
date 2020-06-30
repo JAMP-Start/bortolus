@@ -11,10 +11,12 @@ $primary-light: #FEF789;
 $primary-lighter: #FEF789;
 $primary-dark: #ffd900;
 
-$secondary: #6FC0C6;
-$secondary-1: #B4DBDE;
-$secondary-2: #CBE7E8;
-$secondary-3: #DFF0F2;
+$secondary: #fe8335;
+$secondary-dark: #f46e19;
+
 
 $link: $black;
-$input-placeholder-color: $black;
+
+$input-background-color: rgba($white,0);
+$input-placeholder-color: rgba($black,.75);
+$input-color: $black;

@@ -1,9 +1,9 @@
 <template lang="pug">
-  .slider.swiper-container(:id="`slider-${id}`")
+  .slider.swiper-container(:id="`slider-${id}`" :class="classes")
     .swiper-wrapper
       .swiper-slide(v-for="(item, index) in images", :key="index")
-        img(:src="item.image.url")
-        //- JImage(v-if="item.image && item.image.url" :image="item.image" imgClasses="image")
+        JImage(v-if="ratio" :ratio="ratio" :image="item.image" imgClasses="image-cover")
+        img(v-else :src="item.image.url")
     .swiper-button-prev(:id="`prev-${id}`")
     .swiper-button-next(:id="`next-${id}`")
     .swiper-pagination(:id="`pagination-${id}`")
@@ -37,8 +37,10 @@ export default class JSliderComponent extends Vue {
       },
       effect: 'slide',
       speed: 500,
-      autoplay: {
-        delay: 5000
+      autoplay: false,
+      keyboard: {
+        enabled: true,
+        onlyInViewport: false
       }
     }
 
@@ -57,12 +59,20 @@ export default class JSliderComponent extends Vue {
   @Prop()
   images!: any
 
+  @Prop()
+  classes!: string
+
+  @Prop()
+  ratio!: string
+
 }
 </script>
 
 <style lang="scss" scoped>
   .slider {
-    height: 500px;
+    &.is-large {
+      height: 500px;
+    }
     padding: 0!important;
     .swiper-slide {
       text-align: center;

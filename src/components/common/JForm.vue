@@ -1,17 +1,18 @@
 <template lang="pug">
-    section.section
-      h4 Richiedi maggiori informazioni
-      FormulateForm(v-model="formData" :name="formType" @submit="formSubmit" netlify)
-        FormulateInput(type="hidden" name="type")
-        FormulateInput(type="hidden" name="ref")
-        FormulateInput(type="text" name="nome" placeholder="il tuo nome" validation="required")
-        FormulateInput(type="tel" name="telefono" placeholder="il tuo numero di telefono" validation="required|number")
-        FormulateInput(type="email" name="email" placeholder="la tua e-mail" validation="required|email")
-        FormulateInput(type="textarea" name="messaggio" placeholder="scrivi qui il tuo messaggio" input-class="textarea" validation="required")
-        FormulateInput(type="checkbox" name="privacy" element-class="checkbox" input-class="checkbox" validation="required")
-          template(#label) Acconsento al trattamento dei dati
-            a(target="_blank" href="/privacy-policy") Privacy Policy
-        FormulateInput(type="submit" name="Invia la tua richiesta" input-class="button is-primary")
+    div
+      .section__content(style="max-width: 800px;")
+        h4 Richiedi maggiori informazioni
+        FormulateForm(v-model="formData" :name="formType" @submit="formSubmit" netlify)
+          FormulateInput(type="hidden" name="type")
+          FormulateInput(type="hidden" name="ref")
+          FormulateInput(type="text" name="nome" placeholder="il tuo nome" validation="required")
+          FormulateInput(type="tel" name="telefono" placeholder="il tuo numero di telefono" validation="required|number")
+          FormulateInput(type="email" name="email" placeholder="la tua e-mail" validation="required|email")
+          FormulateInput(type="textarea" name="messaggio" placeholder="scrivi qui il tuo messaggio" input-class="textarea" validation="required")
+          FormulateInput(type="checkbox" name="privacy" element-class="checkbox" input-class="checkbox" validation="required")
+            template(#label) Acconsento al trattamento dei dati
+              a(target="_blank" class="ml-1" href="/privacy-policy") Privacy Policy
+      FormulateInput(type="submit" name="Invia la tua richiesta" input-class="button mt-2 is-primary-important")
 </template>
 
 <script lang="ts">

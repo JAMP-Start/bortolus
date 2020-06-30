@@ -1,22 +1,37 @@
 <template lang="pug">
-  JLink.immobile(:linkUrl="data")
+  .immobile
     .immobile__image
-      JImage(ratio="1/1" :image="immobile.images[0].image" :widths="[350, 450, 550, 650, 750]" imgClasses="image-cover")
+      JSlider(:id="`thumb-${immobile.rif}`" :images="immobile.images" ratio="4/3")
     .immobile__content
-      h4.immobile__title {{ $prismic.asText(immobile.title) }}
-      div.immobile__details {{ immobile.details_superficie }} mq - {{ immobile.details_camere }} camere
-      div.immobile__rif rif. {{ immobile.rif }}
-      div.immobile__price € {{ immobile.price }}
-      .button {{ strings.discoverMore }}
+      .immobile__content__top
+        h6.immobile__zone {{ immobile.zona }}
+        JLink(:linkUrl="data")
+          h4.immobile__title {{ $prismic.asText(immobile.title) }}
+        .immobile__rif rif. {{ immobile.rif }}
+      .immobile__content__bottom
+        .immobile__details.is-inline-flex.mb-2
+          .immobile__details__item {{ immobile.details_superficie }} m
+            sup 2
+          .immobile__details__item {{ immobile.details_camere }} camere
+          .immobile__details__item {{ immobile.details_piano }}
+          .immobile__details__item(v-if="immobile.details_box") {{ immobile.details_box }}
+        .is-flex.is-space-between
+          JLink.immobile__button.button.is-primary.mt-0(:linkUrl="data") {{ strings.discoverMore }}
+          div.immobile__price € {{ immobile.price }}
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, namespace } from 'nuxt-property-decorator'
 
+import JSlider from '~/components/common/JSlider.vue'
+
 const stringsModule = namespace('strings')
 
 @Component({
-  name: 'immobile-card'
+  name: 'immobile-card',
+  components: {
+    JSlider
+  }
 })
 export default class ImmobileCardComponent extends Vue {
 
@@ -35,30 +50,59 @@ export default class ImmobileCardComponent extends Vue {
 
 <style lang="scss" scoped>
 .immobile {
+  height: 100%;
   display: block;
+  background-color: $lighter;
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(8, 8, 8, 0.1), 0 0px 0 1px rgba(8, 8, 8, 0.02);
+  display: flex;
+  flex-direction: column;
   &:hover {
     background-color: $primary-light;
     text-decoration: none!important;
   }
   &__image {
     border: 1px solid $black;
+    flex: 1;
+  }
+  &__zone {
+    color: $secondary!important;
   }
   &__title {
     text-transform: uppercase;
+    font-size: 1rem;
   }
   &__date {
     color: $secondary;
     font-weight: 600;
   }
   &__content {
-    padding: 1rem;
-    margin-bottom: 2rem;
+    padding: 1.25rem;
     color: $black!important;
+    flex: 1;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
   }
-  &__price {
-    text-align: right;
+  &__details {
+    font-size: .9rem;
+    &__item {
+      border-left: 1px solid gray;
+      padding: 0 .6rem;
+      margin: .25rem auto;
+      &:first-of-type {
+        border-left: none;
+      }
+    }
+  }
+  &__price{
     font-weight: 600;
     font-size: 1.5rem;
+  }
+  &__rif {
+    color: $grey;
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 }
 </style>

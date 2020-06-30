@@ -39,8 +39,10 @@
                       :linkIcon="item3.nav_icon") {{ item3.nav_text }}
           .navbar-end
             .navbar-item
-              .buttons
-                JLink(:linkUrl="{url: 'tel:+39043421121'}" linkIcon="phone" linkClasses="") 0434 21121
+              a.cta.is-flex(href="tel:+39043421121")
+                .jicon.is-large.mr-3
+                  i.phone
+                | 0434 21121
 </template>
 
 <script lang="ts">
@@ -99,6 +101,10 @@ export default class TheHeaderComponent extends Vue {
 .navbar-item {
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 1.1rem;
+  .nuxt-link-exact-active {
+    text-decoration: underline;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -126,6 +132,13 @@ export default class TheHeaderComponent extends Vue {
         margin-top: 0!important;
       }
     }
+  }
+}
+.cta {
+  font-size: 2rem;
+  .jicon, i {
+    width: 3rem;
+    height: 3rem;
   }
 }
 </style>
