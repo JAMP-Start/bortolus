@@ -10,7 +10,7 @@
           FormulateInput(type="email" name="email" placeholder="la tua e-mail" validation="required|email")
           FormulateInput(type="textarea" name="messaggio" placeholder="scrivi qui il tuo messaggio" input-class="textarea" validation="required")
           FormulateInput(type="checkbox" name="privacy" element-class="checkbox" input-class="checkbox" validation="required")
-            template(#label) Acconsento al trattamento dei dati
+            template(#label) Accetto il trattamento dei miei dati personali -
               a(target="_blank" class="ml-1" href="/privacy-policy") Privacy Policy
       FormulateInput(type="submit" name="Invia la tua richiesta" input-class="button mt-2 is-primary-important")
 </template>

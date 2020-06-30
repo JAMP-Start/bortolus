@@ -3,6 +3,9 @@
     Slice(v-for="(slice, index) in data.body",
       :data="slice",
       :key="index")
+    section.section
+      .container.content
+        JForm(formType="contatti")
 </template>
 
 <script lang="ts">
@@ -10,12 +13,13 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import Prismic from 'prismic-javascript'
 
 import Slice from '~/components/sections/Slice.vue'
+import JForm from '~/components/common/JForm.vue'
 
 import seo from '~/utils/seo.ts'
 
 @Component({
   components: {
-    Slice
+    Slice, JForm
   },
   head() {
     const { data, lang } = this.$data
