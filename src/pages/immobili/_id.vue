@@ -180,7 +180,8 @@ export default class ImmobilePage extends Vue {
       grid-template-columns: repeat(auto-fit, minmax(10%, 1fr));
       &__item {
         text-align: center;
-        background-color: $primary-light;
+        background-color: $grey-lighter;
+        color: $grey;
         font-weight: 600;
         font-size: 12px;
         padding: .25rem;
@@ -192,9 +193,16 @@ export default class ImmobilePage extends Vue {
       }
       &__links {
         .immobile__details__item {
+          color: $black;
+          background-color: $primary-light;
           cursor: pointer;
-          &.active, &:hover {
+          border: 4px solid transparent;
+          transition: all .4s;
+          &.active {
             background-color: $primary;
+          }
+          &:hover {
+            border-color: $primary;
           }
         }
       }
@@ -339,6 +347,7 @@ export default class ImmobilePage extends Vue {
     position: fixed;
     right: 0;
     bottom: 1rem;
+    border-radius: 6px;
     @media only screen and (max-width: 480px){
       left: 0;
       bottom: 0;

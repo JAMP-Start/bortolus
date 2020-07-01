@@ -59,11 +59,11 @@ export default class ImmobileCardComponent extends Vue {
   box-shadow: 0 0.5em 1em -0.125em rgba(8, 8, 8, 0.1);
   display: flex;
   flex-direction: column;
-  border: 2px solid $lighter;
+  border: 4px solid $lighter;
   transition: all .4s;
   &:hover {
     box-shadow: 0 0.1em 1em 0 rgba(8, 8, 8, 0.1);
-    transform: translateY(.5rem);
+    transform: scale(.99);
     border-color: $primary;
     text-decoration: none!important;
   }
@@ -92,13 +92,13 @@ export default class ImmobileCardComponent extends Vue {
   &__details {
     font-size: .9rem;
     &__item {
-      background-color: #eaeaea;
+      background-color: $grey-lighter;
       color: $grey;
       border-radius: 3px;
       padding: .2rem .6rem;
       margin: .25rem;
       &:hover {
-        background-color: #e2e2e2
+        background-color: $grey-light;
       }
     }
     // &__item {
