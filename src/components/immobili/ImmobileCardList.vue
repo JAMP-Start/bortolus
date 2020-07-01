@@ -1,6 +1,6 @@
 <template lang="pug">
   .columns.is-multiline(v-if="immobili.length")
-    .column.is-one-quarter(v-for="(immobile, index) in immobili" :key="index")
+    .column.is-one-third(v-for="(immobile, index) in immobili" :key="index")
       ImmobileCard(:data="immobile")
   div(v-else) Nessun immobile trovato.
 </template>

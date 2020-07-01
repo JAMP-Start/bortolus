@@ -38,7 +38,9 @@ export default class JFormComponent extends Vue {
 
   beforeMount() {
     const el = document.getElementById('form')
-    el ? el.setAttribute('name', this.formType) : ''
+    if (el) {
+      el.setAttribute('name', this.formType)
+    }
   }
 
 }

@@ -37,6 +37,7 @@ export default class JMapComponent extends Vue {
       position: coords,
       map: this.map
     })
+    console.log(marker)
 
     if (this.type === 'streetview') {
       const mapOptions2 = {

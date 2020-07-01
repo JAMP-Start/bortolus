@@ -43,7 +43,7 @@ export default class IndexPage extends Vue {
       if (contentTypes.length) {
         const contentTypesPromises = contentTypes.map(async (contentType: any) => {
           try {
-            const { results } = await app.$prismic.api.query(Prismic.Predicates.at('document.type', contentType.slice.content_type.toLowerCase()), { lang, pageSize: 4 })
+            const { results } = await app.$prismic.api.query(Prismic.Predicates.at('document.type', contentType.slice.content_type.toLowerCase()), { lang, pageSize: 6 })
             console.log(results)
             data.body[contentType.index].items = results
           } catch (e) {
