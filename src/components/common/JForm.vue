@@ -18,7 +18,7 @@
       FormulateInput(type="submit" name="Invia la tua richiesta" :disabled="isSubmitting" input-class="button mt-2 is-primary-important")
       .notifications.mt-4
         .notification.is-success(v-if="isSubmitted") Grazie per averci contattato. Ti risponderemo il prima possibile.
-        .notification.is-danger(v-if="isNotSubmitted") 
+        .notification.is-danger(v-if="isNotSubmitted")
           | Ops, si è verificato un errore. Controlla i dati inseriti e riprova.
           br
           | Oppure, chiamaci allo 0434 21121. Grazie.
@@ -61,11 +61,11 @@ export default class JFormComponent extends Vue {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: params
     })
-      .then(() => { 
+      .then(() => {
         this.isSubmitted = true
         // reset form
       })
-      .catch(() => this.isNotSubmitted = true)
+      .catch(() => { this.isNotSubmitted = true })
     this.isSubmitting = false
   }
 
