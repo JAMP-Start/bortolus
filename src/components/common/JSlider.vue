@@ -4,10 +4,9 @@
       .swiper-slide(v-for="(item, index) in images", :key="index")
         JImage(v-if="ratio" :ratio="ratio" :image="item.image" imgClasses="image-cover")
         img(v-else :src="item.image.url")
-    .swiper-button-prev(:id="`prev-${id}`")
-    .swiper-button-next(:id="`next-${id}`")
-    .swiper-pagination(:id="`pagination-${id}`")
-    //- .swiper-scrollbar
+    .swiper-button-prev(v-if="images.length > 1" :id="`prev-${id}`")
+    .swiper-button-next(v-if="images.length > 1" :id="`next-${id}`")
+    .swiper-pagination(v-if="images.length > 1" :id="`pagination-${id}`")
 </template>
 
 <script lang="ts">
@@ -24,34 +23,34 @@ export default class JSliderComponent extends Vue {
   private _swiper: any
 
   mounted(): void {
-    const swiperOptions: any = {
-      loop: true,
-      pagination: {
-        el: '#pagination-' + this.id,
-        type: 'bullets', // or fraction, progressbar
-        clickable: true
-      },
-      navigation: {
-        nextEl: '#next-' + this.id,
-        prevEl: '#prev-' + this.id
-      },
-      effect: 'slide',
-      speed: 500,
-      autoplay: false,
-      keyboard: {
-        enabled: true,
-        onlyInViewport: false
+    if (this.images.length > 1) {
+      const swiperOptions: any = {
+        loop: true,
+        pagination: {
+          el: '#pagination-' + this.id,
+          type: 'fraction', // or bullets, progressbar
+          clickable: true
+        },
+        navigation: {
+          nextEl: '#next-' + this.id,
+          prevEl: '#prev-' + this.id
+        },
+        effect: 'slide',
+        speed: 500,
+        autoplay: false,
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        }
       }
+      const el = document.getElementById('slider-' + this.id)
+      this._swiper = new Swiper(el, swiperOptions)
     }
-
-    const el = document.getElementById('slider-' + this.id)
-    this._swiper = new Swiper(el, swiperOptions)
   }
 
-  // destroyed(): void {
-  //   this._swiper.destroy(true, true)
-  //   this._swiper = null
-  // }
+  destroyed() {
+    this._swiper = null
+  }
 
   @Prop()
   id!: string

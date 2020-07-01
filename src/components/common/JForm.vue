@@ -21,9 +21,9 @@
         .notification.is-danger(v-if="isNotSubmitted")
           span Ops, si è verificato un errore, controlla i dati inseriti e riprova.
           br
-          span 
-            | Altrimenti, chiamaci allo 
-            a(href="tel:+30043421121") 0434 21121.
+          span
+            | Altrimenti, chiamaci allo
+            a.ml-1(href="tel:+30043421121") 0434 21121.
             | Grazie.
 </template>
 
