@@ -52,13 +52,13 @@ export default class JFormComponent extends Vue {
   }
 
   handleSubmit () {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: this.createFormDataObj(this.formData)
     })
-    .then((res) => console.log(res))
-    .catch(error => console.log(error))
+      .then(res => console.log(res))
+      .catch(error => console.log(error))
   }
 
 }
