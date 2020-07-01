@@ -56,11 +56,15 @@ export default class ImmobileCardComponent extends Vue {
   display: block;
   background-color: $lighter;
   border-radius: 6px;
-  box-shadow: 0 0.5em 1em -0.125em rgba(8, 8, 8, 0.1), 0 0px 0 1px rgba(8, 8, 8, 0.02);
+  box-shadow: 0 0.5em 1em -0.125em rgba(8, 8, 8, 0.1);
   display: flex;
   flex-direction: column;
+  border: 2px solid $lighter;
+  transition: all .4s;
   &:hover {
-    background-color: $primary-light;
+    box-shadow: 0 0.1em 1em 0 rgba(8, 8, 8, 0.1);
+    transform: translateY(.5rem);
+    border-color: $primary;
     text-decoration: none!important;
   }
   &__image {
@@ -88,13 +92,23 @@ export default class ImmobileCardComponent extends Vue {
   &__details {
     font-size: .9rem;
     &__item {
-      border-left: 1px solid gray;
-      padding: 0 .6rem;
-      margin: .25rem auto;
-      &:first-of-type {
-        border-left: none;
+      background-color: #eaeaea;
+      color: $grey;
+      border-radius: 3px;
+      padding: .2rem .6rem;
+      margin: .25rem;
+      &:hover {
+        background-color: #e2e2e2
       }
     }
+    // &__item {
+    //   border-left: 1px solid gray;
+    //   padding: 0 .6rem;
+    //   margin: .25rem auto;
+    //   &:first-of-type {
+    //     border-left: none;
+    //   }
+    // }
   }
   &__price{
     font-weight: 600;

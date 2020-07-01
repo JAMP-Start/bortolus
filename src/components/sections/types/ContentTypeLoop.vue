@@ -3,15 +3,15 @@
     .container.content
       JLink(:linkUrl="{uid:'immobili'}")
         prismic-rich-text(:field="primary.content")
-      .swiper-container#carousel(v-if="primary.display_as_carousel")
+      .swiper-container#carousel.pb-0(v-if="primary.display_as_carousel")
         .swiper-wrapper
           .swiper-slide(v-for="(item, index) in items" :key="index")
-            ImmobileCard(:data="item")
+            ImmobileCard(v-if="swiperReady" :data="item")
         .swiper-button-prev#carousel-prev
         .swiper-button-next#carousel-next
-        .swiper-pagination#carousel-pagination
-        .has-text-centered
-          JLink.button.is-primary(:linkUrl="{uid:'immobili'}" linkClasses="link arrow") Scopri tutti gli immobili
+        .swiper-pagination#carousel-pagination.is-hidden
+        .has-text-centered.mt-2
+          JLink.button.is-primary(:linkUrl="{uid:'immobili'}" linkClasses="link arrow") Scopri tutti i nostri immobili
 </template>
 
 <script lang="ts">
@@ -33,7 +33,10 @@ export default class ContentTypeLoopComponent extends Vue {
 
   private _swiper: any
 
+  swiperReady: boolean = false
+
   mounted(): void {
+    const _self: any = this
     if (this.primary.display_as_carousel) {
       const swiperOptions: any = {
         slidesPerView: 1,
@@ -55,6 +58,11 @@ export default class ContentTypeLoopComponent extends Vue {
         navigation: {
           nextEl: '#carousel-next',
           prevEl: '#carousel-prev'
+        },
+        on: {
+          init() {
+            _self.swiperReady = true
+          }
         }
       }
       const el = document.getElementById('carousel')

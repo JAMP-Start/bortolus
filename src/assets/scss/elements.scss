@@ -14,6 +14,7 @@
   text-transform: uppercase;
   font-size: .9rem;
   min-width: 160px;
+  transition: background-color .4s, color .4s;
 
   &.is-primary {
     color: $black;
