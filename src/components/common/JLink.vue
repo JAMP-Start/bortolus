@@ -76,6 +76,7 @@ export default class JLinkComponent extends Vue {
 
 <style lang="scss" scoped>
   .navbar-item {
+    background: rgba(0,0,0,0)!important;
     &.has-icon {
       display: inline-flex;
       flex-flow: row wrap;

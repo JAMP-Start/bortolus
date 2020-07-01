@@ -20,7 +20,7 @@ const config: Configuration = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [{
-      src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDeWL0dWP8iN4Z0JSgH7XAtejJzN6s50Hk&language=it', async: true, defer: true
+      src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqstP8RWMwkuJYsaWQ29dZFim3506MteA&language=it', async: true, defer: true
     }]
   },
   loading: { color: '#fff' },

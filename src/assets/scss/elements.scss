@@ -158,9 +158,19 @@ margin-bottom: 1rem;
 .swiper {
   &-container {
     width: 100%;
-    // padding-left: 1rem;
-    // padding-right: 1rem;
     padding-bottom: 4rem;
+    > .swiper-button-prev, > .swiper-button-next, > .swiper-pagination {
+      opacity: 0;
+      transition: opacity .4s;
+    }
+    &:hover {
+      > .swiper-button-prev, > .swiper-button-next, > .swiper-pagination {
+        opacity: 1;
+      }
+    }
+  }
+  &-slide {
+    height: auto;
   }
   &-pagination {
     &-bullet {
@@ -170,6 +180,7 @@ margin-bottom: 1rem;
       &-active {
         transform: scale(1.25);
         background-color: $white!important;
+        box-shadow: 0px 0px .5rem rgba($black, .25);
       }
     }
   }

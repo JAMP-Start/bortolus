@@ -16,11 +16,8 @@
               .button(@click="setTipologiaImmobile('residenziale')" :class="{'is-active': tipologiaImmobile === 'residenziale'}") Residenziale
               .button(@click="setTipologiaImmobile('non residenziale')" :class="{'is-active': tipologiaImmobile === 'non residenziale'}") Non residenziale
         .content.mt-4(v-if="!$fetchState.pending")
-          .columns.is-multiline(v-if="immobili.length")
-            .column.is-one-quarter(v-for="(immobile, index) in immobili" :key="index")
-              ImmobileCard(:data="immobile")
-          div(v-else) Nessun immobile trovato.
-        div(v-else) Sto cercando...
+          ImmobileCardList(:immobili="immobili")
+        div.loadingComponent(v-else)
 </template>
 
 <script lang="ts">
@@ -28,14 +25,13 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import Prismic from 'prismic-javascript'
 
 import PageHeader from '~/components/common/PageHeader.vue'
-import ImmobileCard from '~/components/immobili/ImmobileCard.vue'
-import ImmobilePagination from '~/components/immobili/ImmobilePagination.vue'
+import ImmobileCardList from '~/components/immobili/ImmobileCardList.vue'
 
 import seo from '~/utils/seo.ts'
 
 @Component({
   components: {
-    PageHeader, ImmobileCard, ImmobilePagination
+    PageHeader, ImmobileCardList
   },
   head() {
     const { data, lang } = this.$data

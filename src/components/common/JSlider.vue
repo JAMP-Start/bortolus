@@ -70,9 +70,7 @@ export default class JSliderComponent extends Vue {
 
 <style lang="scss" scoped>
   .slider {
-    &.is-large {
-      height: 500px;
-    }
+    height: 100%;
     padding: 0!important;
     .swiper-slide {
       text-align: center;

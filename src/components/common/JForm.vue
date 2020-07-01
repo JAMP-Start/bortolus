@@ -1,8 +1,9 @@
 <template lang="pug">
     div
-      .section__content(style="max-width: 800px;")
+      .section__content(style="max-width: 960px;")
         h4 Richiedi maggiori informazioni
-        FormulateForm(v-model="formData" :name="formType" @submit="formSubmit" netlify)
+        FormulateForm#form(v-model="formData" :name="formType" method="post" data-netlify="true" data-netlify-honeypot="bot-field")
+          FormulateInput(type="hidden" name="name")
           FormulateInput(type="hidden" name="type")
           FormulateInput(type="hidden" name="ref")
           FormulateInput(type="text" name="nome" placeholder="il tuo nome" validation="required")
@@ -30,12 +31,14 @@ export default class JFormComponent extends Vue {
   formRef!: string
 
   formData: any = {
+    name: this.formType,
     type: this.formType,
-    ref: this.formRef
+    ref: this.formRef || ''
   }
 
-  formSubmit () {
-    console.log(this.formData)
+  beforeMount() {
+    const el = document.getElementById('form')
+    el ? el.setAttribute('name', this.formType) : ''
   }
 
 }

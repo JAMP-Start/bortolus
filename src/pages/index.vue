@@ -5,6 +5,7 @@
       :key="index")
     section.section
       .container.content
+        h2 Contattaci
         JForm(formType="contatti")
 </template>
 
@@ -43,6 +44,7 @@ export default class IndexPage extends Vue {
         const contentTypesPromises = contentTypes.map(async (contentType: any) => {
           try {
             const { results } = await app.$prismic.api.query(Prismic.Predicates.at('document.type', contentType.slice.content_type.toLowerCase()), { lang, pageSize: 4 })
+            console.log(results)
             data.body[contentType.index].items = results
           } catch (e) {
             console.error(e)

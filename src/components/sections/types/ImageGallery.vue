@@ -1,6 +1,6 @@
 <template lang="pug">
-  section.section.gallery(:class="`gallery--${primary.type} ${primary.section_classes}`")
-    .container
+  section.gallery(:class="`gallery--${primary.type} ${primary.section_classes}`")
+    .container-fluid
       .gallery__title.content(v-if="primary.title_show")
         prismic-rich-text(:field="primary.title")
       .gallery__images.swiper-container(:id="primary.gallery_id")

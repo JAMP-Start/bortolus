@@ -3,8 +3,9 @@
     .container
       .content
         prismic-rich-text(v-if="primary.title" :field="primary.title")
-        prismic-rich-text(v-if="primary.content" :field="primary.content")
-        JLink(:linkUrl="primary.button_link", linkClasses="button") {{primary.button_label}}
+        .section__content
+          prismic-rich-text(v-if="primary.content" :field="primary.content")
+          JLink(:linkUrl="primary.button_link", linkClasses="button") {{primary.button_label}}
 </template>
 
 <script lang="ts">

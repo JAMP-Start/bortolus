@@ -1,7 +1,7 @@
 <template lang="pug">
   .immobile
     .immobile__image
-      JSlider(:id="`thumb-${immobile.rif}`" :images="immobile.images" ratio="4/3")
+      JSlider(:id="`thumb-${immobile.rif}`" :images="immobile.images" ratio="4/3" :key="`thumb-${immobile.rif}`")
     .immobile__content
       .immobile__content__top
         h6.immobile__zone {{ immobile.zona }}
@@ -50,6 +50,8 @@ export default class ImmobileCardComponent extends Vue {
 
 <style lang="scss" scoped>
 .immobile {
+  position: relative;
+  overflow: hidden;
   height: 100%;
   display: block;
   background-color: $lighter;
@@ -62,7 +64,6 @@ export default class ImmobileCardComponent extends Vue {
     text-decoration: none!important;
   }
   &__image {
-    border: 1px solid $black;
     flex: 1;
   }
   &__zone {

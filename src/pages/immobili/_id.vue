@@ -6,7 +6,7 @@
           .is-flex.is-space-between
             div
               prismic-rich-text(:field="data.title")
-              div.has-text-weight-bold.is-size-4  rif. {{ data.rif }}
+              div.has-text-weight-bold.is-size-4.has-text-grey  rif. {{ data.rif }}
             div.has-text-weight-bold.is-size-2  € {{ data.price }}
         .immobile__details
           .immobile__details__item(v-if="data.details_superficie")
@@ -32,12 +32,14 @@
             span {{ data.details_box }}
         .immobile__tabs.my-4
           .immobile__tabs__tab(v-if="activeTab === 1")
-            JSlider(:id="`foto-${data.rif}`" :images="data.images" classes="is-large")
+            JSlider(:id="`foto-${data.rif}`" :images="data.images")
           .immobile__tabs__tab(v-if="hasPlanimetrie && activeTab === 2")
-            JSlider(:id="`planimetria-${data.rif}`" :images="data.images1" classes="is-large")
+            JSlider(:id="`planimetria-${data.rif}`" :images="data.images1")
           .immobile__tabs__tab(v-if="activeTab === 3") Virtual Tour
-          .immobile__tabs__tab(v-if="activeTab === 4") Mappa
-          .immobile__tabs__tab(v-if="activeTab === 5") Street View
+          .immobile__tabs__tab(v-if="activeTab === 4")
+            JMap(:data="data.map" type="map" :key="'map'")
+          .immobile__tabs__tab(v-if="activeTab === 5")
+            JMap(:data="data.map" type="streetview" :key="'streetview'")
         .immobile__details.immobile__details__links
           .immobile__details__item(@click="activeTab = 1" :class="{'active': activeTab === 1}")
             .immobile__details__item__icon.jicon.is-large
@@ -66,7 +68,7 @@
           h2 Dettagli Immobile
           .section__content
             ul.immobile__table
-              li(v-for="(value, key) in details" :key="key")
+              li(v-for="(value, key) in details" :key="key" v-if="value")
                 strong {{ key | label }}
                 span {{ value }}
         section.section
@@ -89,7 +91,8 @@
           h2 Posizione
           address.mt-4
             h4 Indirizzo:
-            prismic-rich-text(:field="data.indirizzo")
+            a(target="_blank" :href="`https://www.google.com/maps/search/?api=1&query=${addressQuery}`")
+              prismic-rich-text(:field="data.indirizzo")
             br
             strong.mr-2 Zona:
             span {{ data.zona }}
@@ -105,13 +108,14 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import JSlider from '~/components/common/JSlider.vue'
+import JMap from '~/components/common/JMap.vue'
 import JForm from '~/components/common/JForm.vue'
 
 import seo from '~/utils/seo.ts'
 
 @Component({
   components: {
-    JSlider, JForm
+    JSlider, JForm, JMap
   },
   head() {
     const { data, lang } = this.$data
@@ -134,6 +138,10 @@ export default class ImmobilePage extends Vue {
       obj[key] = this.data[key]
       return obj
     }, {})
+  }
+
+  get addressQuery(): string {
+    return this.$prismic.asText(this.data.indirizzo).replace('\n', ' ')
   }
 
   mounted() {
@@ -176,6 +184,7 @@ export default class ImmobilePage extends Vue {
         font-weight: 600;
         font-size: 12px;
         padding: .25rem;
+        border-radius: 6px;
         @media only screen and (min-width: 768px){
           padding: 1rem;
           font-size: 1.2rem;
@@ -191,11 +200,18 @@ export default class ImmobilePage extends Vue {
       }
     }
     &__tabs {
-      // height: 60vh;
+      position: relative;
+      min-height: 60vh;
+      max-height: 80vh;
       background-color: $primary-light;
+      background-color: $light;
       overflow: hidden;
       &__tab {
-        max-height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
       }
     }
     &__table {
@@ -341,7 +357,7 @@ export default class ImmobilePage extends Vue {
 
 @keyframes fadeInUp {
   from {
-    transform: translate3d(0, 0.75rem, 0);
+    transform: translate3d(0, 1rem, 0);
   }
   to {
     transform: translate3d(0, 0, 0);

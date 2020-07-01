@@ -1,48 +1,33 @@
 <template lang="pug">
   section.section(:id="primary.section_id" :class="primary.section_classes")
-    .container
-      .content
+    .container.content
+      JLink(:linkUrl="{uid:'immobili'}")
         prismic-rich-text(:field="primary.content")
       .swiper-container#carousel(v-if="primary.display_as_carousel")
         .swiper-wrapper
           .swiper-slide(v-for="(item, index) in items" :key="index")
-            .box
-              article.media.media-centered
-                .media-image(v-if="item.data.image")
-                  JImage(ratio="16/9" :image="item.data.image" :widths="[350, 450, 550, 650, 750]" imgClasses="image-cover")
-                .media-content.content
-                  prismic-rich-text(v-if="item.data.title" :field="item.data.title")
-                  prismic-rich-text(v-if="item.data.content" :field="item.data.content")
-                  JLink(:linkToResolve="item", linkClasses="button") {{ strings.discoverMore }}
-        .swiper-button-prev#prev
-        .swiper-button-next#next
-        .swiper-pagination
-      .columns(v-else="")
-        .column(v-for="(item, index) in items" :key="index" :class="`is-${12 / primary.columns_per_row}`")
-          .box
-            article.media
-              .media-left(v-if="item.data.image.url")
-                JImage(ratio="1/1" :image="item.data.image" :widths="[350, 450, 550, 650, 750]" imgClasses="image is-128x128")
-              .media-content.content
-                prismic-rich-text(v-if="item.data.title" :field="item.data.title")
-                prismic-rich-text(v-if="item.data.content" :field="item.data.content")
-                JLink(:linkToResolve="item", linkClasses="button") {{ strings.discoverMore }}
-        JLink(:linkUrl="primary.button_link" linkClasses="link arrow") {{ primary.button_text }}
-
+            ImmobileCard(:data="item")
+        .swiper-button-prev#carousel-prev
+        .swiper-button-next#carousel-next
+        .swiper-pagination#carousel-pagination
+        .has-text-centered
+          JLink.button.is-primary(:linkUrl="{uid:'immobili'}" linkClasses="link arrow") Scopri tutti gli immobili
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, namespace } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 
+import ImmobileCard from '~/components/immobili/ImmobileCard.vue'
 import { Slice } from '~/types/Slice'
 
-const stringsModule = namespace('strings')
-
 @Component({
-  name: 'content-type-loop'
+  name: 'content-type-loop',
+  components: {
+    ImmobileCard
+  }
 })
 export default class ContentTypeLoopComponent extends Vue {
 
@@ -64,12 +49,12 @@ export default class ContentTypeLoopComponent extends Vue {
           }
         },
         pagination: {
-          el: '.swiper-pagination',
+          el: '#carousel-pagination',
           clickable: true
         },
         navigation: {
-          nextEl: '#next',
-          prevEl: '#prev'
+          nextEl: '#carousel-next',
+          prevEl: '#carousel-prev'
         }
       }
       const el = document.getElementById('carousel')
@@ -95,9 +80,6 @@ export default class ContentTypeLoopComponent extends Vue {
   get items(): any {
     return this.data.items
   }
-
-  @stringsModule.Getter('data')
-  readonly strings: any
 
 }
 </script>
