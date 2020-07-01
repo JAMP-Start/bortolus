@@ -98,7 +98,7 @@
             span {{ data.zona }}
         section.section#form
           h2 Ti interessa questo immobile?
-          JForm(formType="immobile" formRef="123")
+          JForm(formType="immobile" formRif="123")
       section.section.post__footer.has-text-centered
         JLink(:linkUrl="{uid:'immobili'}" linkClasses="arrow") Tutti gli immobili
     .form__cta.fadeInUp(v-show="showCta" v-scroll-to="{el: `#form`}") Ti interessa questo immobile? Contattaci ⟶

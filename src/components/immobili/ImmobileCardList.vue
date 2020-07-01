@@ -18,7 +18,7 @@ import ImmobileCard from '~/components/immobili/ImmobileCard.vue'
 })
 export default class ImmobileCardListComponent extends Vue {
 
-  @Prop({ type: Object, default() { return {} } })
+  @Prop()
   immobili!: any
 
 }

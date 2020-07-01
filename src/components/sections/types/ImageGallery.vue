@@ -5,15 +5,15 @@
         prismic-rich-text(:field="primary.title")
       .gallery__images.swiper-container(:id="primary.gallery_id")
         .swiper-wrapper
-          .swiper-slide(v-for="(item, index) in items", :key="index" :class="{'image-cover': isGrid}")
+          .swiper-slide(v-for="(item, index) in items", :key="index")
             figure.image-cover
               picture
                 prismic-image(:field="item.image")
             .gallery__images__caption(v-if="item.caption")
               prismic-rich-text(:field="item.caption")
-        .swiper-button-prev(:id="`prev-${primary.gallery_id}`" v-if="!isGrid")
-        .swiper-button-next(:id="`next-${primary.gallery_id}`" v-if="!isGrid")
-        .swiper-pagination(:id="`pagination-${primary.gallery_id}`" v-if="!isGrid")
+        .swiper-button-prev(:id="`prev-${primary.gallery_id}`")
+        .swiper-button-next(:id="`next-${primary.gallery_id}`")
+        .swiper-pagination(:id="`pagination-${primary.gallery_id}`")
         //- .swiper-scrollbar
 </template>
 
@@ -142,15 +142,28 @@ export default class ImageGalleryComponent extends Vue {
       z-index: 1;
       background-color: rgba($primary,.6);
       p {
-        font-size: 3rem;
+        font-size: 1.75rem;
+        @media only screen and (min-width: 768px){
+          font-size: 2.5rem;
+        }
+        @media only screen and (min-width: 1024px){
+          font-size: 4rem;
+        }
         line-height: 1.5;
         color: $white;
       }
       text-transform: uppercase;
       font-weight: 700;
       text-align: right;
-      max-width: 60%;
+      @media only screen and (min-width: 1024px){
+        max-width: 60%;
+      }
       padding: .5rem 1rem .5rem 2rem;
+    }
+    .swiper-slide:nth-of-type(odd) .gallery__images__caption  {
+      left: auto;
+      right: 0;
+      text-align: left;
     }
   }
   &--slider {

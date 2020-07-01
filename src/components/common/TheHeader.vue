@@ -85,7 +85,7 @@ export default class TheHeaderComponent extends Vue {
 </script>
 
 <style lang="scss">
-.navbar {
+.navbar, .navbar-menu {
   background-color: $primary;
 }
 .is-sticky {
@@ -93,11 +93,15 @@ export default class TheHeaderComponent extends Vue {
   top: 0;
   z-index: 4;
 }
-
 .navbar-brand img {
-  max-height: 80px;
+  max-height: 50px;
+  @media screen and (min-width: 768px) {
+    max-height: 80px;
+  }
 }
-
+.navbar-burger {
+  height: auto;
+}
 .navbar-item {
   text-transform: uppercase;
   font-weight: 600;

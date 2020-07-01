@@ -3,18 +3,33 @@
     PageHeader(:data="data")
     section.section.mt-0
       .container
-        .filters.mb-4
+        //- .filters.mb-4
+        //-   .filters__filter
+        //-     label.menu-label Tipologia Annuncio
+        //-     .buttons.has-addons(@click="setTipologiaImmobile('')")
+        //-       nuxt-link.button(:to="{ name: 'immobili' }" :class="{'is-active is-black': tipologiaAnnuncio === ''}") Tutti
+        //-       nuxt-link.button(:to="{ name: 'immobili', query: { tipologia_annuncio: 'vendita' }}" :class="{'is-active is-black': tipologiaAnnuncio === 'vendita'}") Vendita
+        //-       nuxt-link.button(:to="{ name: 'immobili', query: { tipologia_annuncio: 'affitto' }}" :class="{'is-active is-black': tipologiaAnnuncio === 'affitto'}") Affitto
+        //-   .filters__filter
+        //-     label.menu-label Tipologia Immobile
+        //-     .buttons.has-addons
+        //-       .button(@click="setTipologiaImmobile('residenziale')" :class="{'is-active is-black': tipologiaImmobile === 'residenziale'}") Residenziale
+        //-       .button(@click="setTipologiaImmobile('non residenziale')" :class="{'is-active is-black': tipologiaImmobile === 'non residenziale'}") Non residenziale
+        .filters
           .filters__filter
             label.menu-label Tipologia Annuncio
-            .buttons.has-addons(@click="setTipologiaImmobile('')")
-              nuxt-link.button(:to="{ path: 'immobili' }" :class="{'is-active': tipologiaAnnuncio === ''}") Tutti
-              nuxt-link.button(:to="{ path: 'immobili', query: { tipologia_annuncio: 'vendita' }}" :class="{'is-active': tipologiaAnnuncio === 'vendita'}") Vendita
-              nuxt-link.button(:to="{ path: 'immobili', query: { tipologia_annuncio: 'affitto' }}" :class="{'is-active': tipologiaAnnuncio === 'affitto'}") Affitto
+            .select
+              select(v-model="tipologiaAnnuncio" @change="tipologiaImmobile = ''")
+                option(value="") Tutti
+                option(value="vendita") Vendita
+                option(value="affitto") Affitto
           .filters__filter
             label.menu-label Tipologia Immobile
-            .buttons.has-addons
-              .button(@click="setTipologiaImmobile('residenziale')" :class="{'is-active': tipologiaImmobile === 'residenziale'}") Residenziale
-              .button(@click="setTipologiaImmobile('non residenziale')" :class="{'is-active': tipologiaImmobile === 'non residenziale'}") Non residenziale
+            .select
+              select(v-model="tipologiaImmobile" @change="filterByTipologiaImmobile()")
+                option(value="") Tutti
+                option(value="residenziale") Residenziale
+                option(value="non residenziale") Non residenziale
         .content.mt-4(v-if="!$fetchState.pending")
           ImmobileCardList(:immobili="immobili")
         div.loadingComponent(v-else)
@@ -38,7 +53,7 @@ import seo from '~/utils/seo.ts'
     return seo(data, lang, this.$route.path)
   },
   watch: {
-    '$route.query': '$fetch'
+    tipologiaAnnuncio: '$fetch'
   }
 })
 export default class ImmobiliPage extends Vue {
@@ -48,10 +63,11 @@ export default class ImmobiliPage extends Vue {
   immobiliData: any = []
   pages: number = 0
   lang: string = 'it'
+  tipologiaAnnuncio: string = ''
   tipologiaImmobile: string = ''
 
-  get tipologiaAnnuncio(): string {
-    return this.$route.query.tipologia_annuncio ? this.$route.query.tipologia_annuncio.toString() : ''
+  mounted() {
+    this.$route.query.tipologia_annuncio ? this.tipologiaAnnuncio = this.$route.query.tipologia_annuncio.toString() : this.tipologiaAnnuncio = ''
   }
 
   async asyncData({ app, error }): Promise<any> {
@@ -68,10 +84,9 @@ export default class ImmobiliPage extends Vue {
     try {
       let queryParam: string = 'document.type'
       let queryValue: string = 'immobile'
-      const query = this.$route.query
-      if (query.tipologia_annuncio) {
+      if (this.tipologiaAnnuncio.length) {
         queryParam = 'my.immobile.tipologia_annuncio'
-        queryValue = query.tipologia_annuncio.toString()
+        queryValue = this.tipologiaAnnuncio
       }
       const { total_pages, results } = await this.$prismic.api.query(Prismic.Predicates.at(queryParam, queryValue), { orderings: '[my.post.date desc]' })
       this.immobiliData = results
@@ -81,11 +96,6 @@ export default class ImmobiliPage extends Vue {
     } catch (e) {
       console.error(e)
     }
-  }
-
-  setTipologiaImmobile(tipologia) {
-    this.tipologiaImmobile === tipologia ? this.tipologiaImmobile = '' : this.tipologiaImmobile = tipologia
-    this.filterByTipologiaImmobile()
   }
 
   filterByTipologiaImmobile() {
@@ -102,13 +112,19 @@ export default class ImmobiliPage extends Vue {
 <style lang="scss">
 .filters {
   width: 100%;
+  max-width: 400px;
   display: inline-flex;
   justify-content: space-between;
+  flex-flow: row wrap;
+  margin-bottom: 2.5em;
   &__filter {
     .buttons {
-      margin-top: -1rem;
+      margin-top: .5rem;
+      margin-bottom: 1rem;
+      .button { flex: 0 0 auto; margin-top: 0; }
     }
     label {
+      display: block;
       text-transform: uppercase;
       font-size: .9rem;
       text-transform: uppercase;
