@@ -3,23 +3,11 @@
     PageHeader(:data="data")
     section.section.mt-0
       .container
-        //- .filters.mb-4
-        //-   .filters__filter
-        //-     label.menu-label Tipologia Annuncio
-        //-     .buttons.has-addons(@click="setTipologiaImmobile('')")
-        //-       nuxt-link.button(:to="{ name: 'immobili' }" :class="{'is-active is-black': tipologiaAnnuncio === ''}") Tutti
-        //-       nuxt-link.button(:to="{ name: 'immobili', query: { tipologia_annuncio: 'vendita' }}" :class="{'is-active is-black': tipologiaAnnuncio === 'vendita'}") Vendita
-        //-       nuxt-link.button(:to="{ name: 'immobili', query: { tipologia_annuncio: 'affitto' }}" :class="{'is-active is-black': tipologiaAnnuncio === 'affitto'}") Affitto
-        //-   .filters__filter
-        //-     label.menu-label Tipologia Immobile
-        //-     .buttons.has-addons
-        //-       .button(@click="setTipologiaImmobile('residenziale')" :class="{'is-active is-black': tipologiaImmobile === 'residenziale'}") Residenziale
-        //-       .button(@click="setTipologiaImmobile('non residenziale')" :class="{'is-active is-black': tipologiaImmobile === 'non residenziale'}") Non residenziale
         .filters
           .filters__filter
             label.menu-label Tipologia Annuncio
             .select
-              select(v-model="tipologiaAnnuncio" @change="tipologiaImmobile = ''")
+              select(v-model="tipologiaAnnuncio")
                 option(value="") Tutti
                 option(value="vendita") Vendita
                 option(value="affitto") Affitto

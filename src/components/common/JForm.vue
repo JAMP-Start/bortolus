@@ -17,11 +17,14 @@
         FormulateInput(type="checkbox" name="condizioni" element-class="checkbox" input-class="checkbox" label="Accetto il trattamento dei dati personali." validation="accepted")
       FormulateInput(type="submit" name="Invia la tua richiesta" :disabled="isSubmitting" input-class="button mt-2 is-primary-important")
       .notifications.mt-4
-        .notification.is-success(v-if="isSubmitted") Grazie per averci contattato. Ti risponderemo il prima possibile.
+        .notification.is-success(v-if="isSubmitted") Ti ringraziamo per la tua richiesta. Ti ricontatteremo il prima possibile.
         .notification.is-danger(v-if="isNotSubmitted")
-          | Ops, si è verificato un errore. Controlla i dati inseriti e riprova.
+          span Ops, si è verificato un errore, controlla i dati inseriti e riprova.
           br
-          | Oppure, chiamaci allo 0434 21121. Grazie.
+          span 
+            | Altrimenti, chiamaci allo 
+            a(href="tel:+30043421121") 0434 21121.
+            | Grazie.
 </template>
 
 <script lang="ts">
