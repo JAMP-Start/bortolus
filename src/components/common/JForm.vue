@@ -87,6 +87,10 @@ export default class JFormComponent extends Vue {
   font-family: $font-primary;
   font-weight: 600;
   letter-spacing: 1px;
+  box-shadow: none!important;
+  &:focus {
+    border-style: solid;
+  }
 }
 label {
   font-weight: 600;

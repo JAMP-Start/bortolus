@@ -1,4 +1,5 @@
 <template lang="pug">
+div
   footer.footer.has-background-primary
     .footer__columns
       .columns.container
@@ -15,6 +16,8 @@
           .d-flex
             nuxt-link.mr-4(to="/privacy-policy") Privacy Policy
             nuxt-link(to="/cookie-policy") Cookie Policy
+  //- .scrolltop(v-scroll-to="{el: `#top`}")
+  //-   i ⟶
 </template>
 
 <script lang="ts">
@@ -63,6 +66,30 @@ export default class TheFooterComponent extends Vue {
     .columns {
       align-items: center;
     }
+  }
+}
+.scrolltop {
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+  bottom: 1rem;
+  border-radius: 4px;
+  background-color: $secondary;
+  color: $white!important;
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
+  z-index: 4;
+  i {
+    display: block;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 3;
+    font-weight: 700;
+    transform: rotate(-90deg);
+  }
+  &:hover {
+    background-color: $black;
   }
 }
 </style>

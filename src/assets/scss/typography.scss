@@ -51,8 +51,7 @@ a {
         font-weight: 600;
         padding-left: 2rem;
         &:after {
-            transform: rotate(180deg);
-            content: '⟶';
+            content: '⟵';
             position: absolute;
             left: 0;
         }

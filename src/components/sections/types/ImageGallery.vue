@@ -9,7 +9,7 @@
             figure.image-cover(:class="{ 'has-overlay': item.caption }")
               picture
                 prismic-image(:field="item.image")
-            .gallery__images__caption(v-if="item.caption")
+            .gallery__images__caption(v-if="item.caption && swiperReady")
               prismic-rich-text(:field="item.caption")
         .swiper-button-prev(:id="`prev-${primary.gallery_id}`")
         .swiper-button-next(:id="`next-${primary.gallery_id}`")
@@ -32,8 +32,10 @@ export default class ImageGalleryComponent extends Vue {
 
   private _swiper: any
 
+  swiperReady: boolean = false
+
   mounted(): void {
-    // Default Type: 'slider'
+    const _self: any = this
     let swiperOptions: any = {
       loop: true,
       pagination: {
@@ -52,6 +54,11 @@ export default class ImageGalleryComponent extends Vue {
       },
       autoplay: {
         delay: 5000
+      },
+      on: {
+        init() {
+          _self.swiperReady = true
+        }
       }
     }
     // // Type: 'carousel

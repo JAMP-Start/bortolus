@@ -101,7 +101,7 @@
           JForm(formType="immobile" formRif="123")
       section.section.has-text-centered.pt-0
         JLink(:linkUrl="{uid:'immobili'}" linkClasses="arrow-left") {{ strings.immobiliListButton }}
-    .form__cta.fadeInUp(v-show="showCta" v-scroll-to="{el: `#form`}")  {{ strings.ctaTitle }} Contattaci ⟶
+    .form__cta.fadeInUp(v-show="showCta" v-scroll-to="{el: `#form`}") {{ strings.ctaTitle }} Contattaci ⟶
 </template>
 
 <script lang="ts">

@@ -1,5 +1,5 @@
 <template lang="pug">
-  header
+  header#top
     nav.navbar(role="navigation", aria-label="main navigation")
       .container
         .navbar-brand
