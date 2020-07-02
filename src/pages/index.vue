@@ -3,20 +3,22 @@
     Slice(v-for="(slice, index) in data.body",
       :data="slice",
       :key="index")
-    section.section
+    section.section#contatti
       .container.content
-        h2 Contattaci
+        h2 {{ strings.formHeading || 'Contattaci'}}
         JForm(formType="contatti")
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
 import Prismic from 'prismic-javascript'
 
 import Slice from '~/components/sections/Slice.vue'
 import JForm from '~/components/common/JForm.vue'
 
 import seo from '~/utils/seo.ts'
+
+const stringsModule = namespace('strings')
 
 @Component({
   components: {
@@ -59,5 +61,7 @@ export default class IndexPage extends Vue {
     }
   }
 
+  @stringsModule.Getter('data')
+  readonly strings: any
 }
 </script>

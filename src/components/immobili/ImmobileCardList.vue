@@ -1,14 +1,17 @@
 <template lang="pug">
-  .columns.is-multiline(v-if="immobili.length")
-    .column.is-one-third(v-for="(immobile, index) in immobili" :key="index")
+  .immobili__list.columns.is-multiline(v-if="immobili.length")
+    .immobili__list__item.column.is-one-third(v-for="(immobile, index) in immobili" :key="index")
       ImmobileCard(:data="immobile")
-  div(v-else) Nessun immobile trovato.
+  div(v-else)
+    h4 {{ strings.immobiliNotFound }}
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Component, Vue, Prop, namespace } from 'nuxt-property-decorator'
 
 import ImmobileCard from '~/components/immobili/ImmobileCard.vue'
+
+const stringsModule = namespace('strings')
 
 @Component({
   name: 'immobile-card-list',
@@ -20,6 +23,9 @@ export default class ImmobileCardListComponent extends Vue {
 
   @Prop()
   immobili!: any
+
+  @stringsModule.Getter('data')
+  readonly strings: any
 
 }
 </script>

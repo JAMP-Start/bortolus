@@ -1,25 +1,25 @@
 <template lang="pug">
   div(style="max-width: 960px;")
-    h4 Richiedi maggiori informazioni
     FormulateForm(@submit="handleSubmit" v-model="formData" :id="formType" :name="formType" method="post" netlify data-netlify-honeypot="bot-field")
       .section__content
+        h4 {{ strings.formTitle }}
         FormulateInput(type="hidden" name="form-name")
         FormulateInput(type="hidden" name="type")
         FormulateInput(type="hidden" name="rif")
-        FormulateInput(type="text" name="nome" placeholder="il tuo nome" validation="required")
-        FormulateInput(type="tel" name="telefono" placeholder="il tuo numero di telefono" validation="required|number")
-        FormulateInput(type="email" name="email" placeholder="la tua e-mail" validation="required|email")
-        FormulateInput(type="textarea" name="messaggio" placeholder="scrivi qui il tuo messaggio" input-class="textarea" validation="required")
+        FormulateInput(type="text" name="nome" :placeholder="strings.formNameLabel" validation="required")
+        FormulateInput(type="tel" name="telefono" :placeholder="strings.formPhoneLabel" validation="required|number")
+        FormulateInput(type="email" name="email" :placeholder="strings.formEmailLabel" validation="required|email")
+        FormulateInput(type="textarea" name="messaggio" :placeholder="strings.formMessageLabel" input-class="textarea" validation="required")
         //- FormulateInput(type="checkbox" name="termini" element-class="checkbox" input-class="checkbox" validation="accepted")
         //-   template(#label)
         //-     span.ml-2 Accetto il trattamento dei miei dati personali -
         //-       a(target="_blank" class="ml-1" href="/privacy-policy") Privacy Policy
-        FormulateInput(type="checkbox" name="condizioni" element-class="checkbox" input-class="checkbox" label="Accetto il trattamento dei dati personali." validation="accepted")
-      FormulateInput(type="submit" name="Invia la tua richiesta" :disabled="isSubmitting" input-class="button mt-2 is-primary-important")
+        FormulateInput(type="checkbox" name="condizioni" element-class="checkbox" input-class="checkbox mr-2" :label="strings.formTermsLabel" validation="accepted")
+      FormulateInput(type="submit" :name="strings.formSubmitLabel" :disabled="isSubmitting" input-class="button mt-2 is-primary-important")
       .notifications.mt-4
-        .notification.is-success(v-if="isSubmitted") Ti ringraziamo per la tua richiesta. Ti ricontatteremo il prima possibile.
+        .notification.is-success(v-if="isSubmitted") {{ strings.formSuccess }}
         .notification.is-danger(v-if="isNotSubmitted")
-          span Ops, si è verificato un errore, controlla i dati inseriti e riprova.
+          span {{ strings.formError }}
           br
           span
             | Altrimenti, chiamaci allo
@@ -28,7 +28,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Component, Vue, Prop, namespace } from 'nuxt-property-decorator'
+
+const stringsModule = namespace('strings')
 
 @Component({
   name: 'JForm'
@@ -72,6 +74,9 @@ export default class JFormComponent extends Vue {
     this.isSubmitting = false
   }
 
+  @stringsModule.Getter('data')
+  readonly strings: any
+
 }
 </script>
 
@@ -79,7 +84,12 @@ export default class JFormComponent extends Vue {
 .input, .textarea {
   border: 2px dashed $black;
   box-shadow: none;
-  border-radius: 0;
+  font-family: $font-primary;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+label {
+  font-weight: 600;
 }
 ul.help {
   margin: 0;

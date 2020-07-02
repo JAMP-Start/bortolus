@@ -33,6 +33,7 @@ p {
 
 // Links
 a {
+    position: relative;
     &:hover:not(.button) {
         color: $black;
         background: none;
@@ -44,6 +45,16 @@ a {
         &:after {
             content: '⟶';
             margin-left: .5rem;
+        }
+    } 
+    &.arrow-left {
+        font-weight: 600;
+        padding-left: 2rem;
+        &:after {
+            transform: rotate(180deg);
+            content: '⟶';
+            position: absolute;
+            left: 0;
         }
     } 
 }

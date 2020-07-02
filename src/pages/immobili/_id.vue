@@ -1,7 +1,7 @@
 <template lang="pug">
   .container
     article.immobile
-      .content
+      .content.mb-0
         section.section.my-0
           .is-flex.is-space-between
             div
@@ -97,21 +97,23 @@
             strong.mr-2 Zona:
             span {{ data.zona }}
         section.section#form
-          h2 Ti interessa questo immobile?
+          h2 {{ strings.ctaTitle }}
           JForm(formType="immobile" formRif="123")
-      section.section.post__footer.has-text-centered
-        JLink(:linkUrl="{uid:'immobili'}" linkClasses="arrow") Tutti gli immobili
-    .form__cta.fadeInUp(v-show="showCta" v-scroll-to="{el: `#form`}") Ti interessa questo immobile? Contattaci ⟶
+      section.section.has-text-centered.pt-0
+        JLink(:linkUrl="{uid:'immobili'}" linkClasses="arrow-left") {{ strings.immobiliListButton }}
+    .form__cta.fadeInUp(v-show="showCta" v-scroll-to="{el: `#form`}")  {{ strings.ctaTitle }} Contattaci ⟶
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
 
 import JSlider from '~/components/common/JSlider.vue'
 import JMap from '~/components/common/JMap.vue'
 import JForm from '~/components/common/JForm.vue'
 
 import seo from '~/utils/seo.ts'
+
+const stringsModule = namespace('strings')
 
 @Component({
   components: {
@@ -165,6 +167,8 @@ export default class ImmobilePage extends Vue {
     }
   }
 
+  @stringsModule.Getter('data')
+  readonly strings: any
 }
 </script>
 

@@ -6,7 +6,7 @@
       .gallery__images.swiper-container(:id="primary.gallery_id")
         .swiper-wrapper
           .swiper-slide(v-for="(item, index) in items", :key="index")
-            figure.image-cover
+            figure.image-cover(:class="{ 'has-overlay': item.caption }")
               picture
                 prismic-image(:field="item.image")
             .gallery__images__caption(v-if="item.caption")
@@ -173,6 +173,18 @@ export default class ImageGalleryComponent extends Vue {
   }
   .swiper-lazy-preloader {
     opacity: 0.5;
+  }
+}
+.has-overlay {
+  &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba($black, 0.25);
+      z-index: 1;
   }
 }
 </style>

@@ -5,14 +5,14 @@
       .container
         .filters
           .filters__filter
-            label.menu-label Tipologia Annuncio
+            label.menu-label {{ strings.filterTipologiaAnnuncio }}
             .select
               select(v-model="tipologiaAnnuncio")
                 option(value="") Tutti
                 option(value="vendita") Vendita
                 option(value="affitto") Affitto
           .filters__filter
-            label.menu-label Tipologia Immobile
+            label.menu-label {{ strings.filterTipologiaImmobile }}
             .select
               select(v-model="tipologiaImmobile" @change="filterByTipologiaImmobile()")
                 option(value="") Tutti
@@ -24,13 +24,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
 import Prismic from 'prismic-javascript'
 
 import PageHeader from '~/components/common/PageHeader.vue'
 import ImmobileCardList from '~/components/immobili/ImmobileCardList.vue'
 
 import seo from '~/utils/seo.ts'
+
+const stringsModule = namespace('strings')
 
 @Component({
   components: {
@@ -94,10 +96,16 @@ export default class ImmobiliPage extends Vue {
     }
   }
 
+  @stringsModule.Getter('data')
+  readonly strings: any
+
 }
 </script>
 
 <style lang="scss">
+.immobili-page{
+  min-height: calc(100vh - 96px);
+}
 .filters {
   width: 100%;
   max-width: 400px;
@@ -106,6 +114,13 @@ export default class ImmobiliPage extends Vue {
   flex-flow: row wrap;
   margin-bottom: 2.5em;
   &__filter {
+    select {
+      border: 2px solid $black;
+      &:focus {
+        border-color: $primary;
+        outline: none;
+      }
+    }
     .buttons {
       margin-top: .5rem;
       margin-bottom: 1rem;
