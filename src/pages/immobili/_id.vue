@@ -32,9 +32,9 @@
             span {{ data.details_box }}
         .immobile__tabs.my-4
           .immobile__tabs__tab(v-if="activeTab === 1")
-            JSlider(:id="`foto-${data.rif}`" :images="data.images")
+            JSlider(:id="`foto-${data.rif}`" :images="data.images" :key="'foto'")
           .immobile__tabs__tab(v-if="hasPlanimetrie && activeTab === 2")
-            JSlider(:id="`planimetria-${data.rif}`" :images="data.images1")
+            JSlider(:id="`planimetria-${data.rif}`" :images="data.images1" :key="'planimetrie'")
           .immobile__tabs__tab(v-if="activeTab === 3") Virtual Tour
           .immobile__tabs__tab(v-if="activeTab === 4")
             JMap(:data="data.map" type="map" :key="'map'")
