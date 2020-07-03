@@ -126,7 +126,10 @@ const stringsModule = namespace('strings')
   },
   head() {
     const { data } = this.$data
-    return seo(data, this.$route.path)
+    return {
+      ...seo(data, this.$route.path),
+      script: [{ src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqstP8RWMwkuJYsaWQ29dZFim3506MteA&language=it', async: true, defer: true }]
+    }
   }
 })
 export default class ImmobilePage extends Vue {

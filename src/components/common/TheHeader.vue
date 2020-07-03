@@ -45,7 +45,7 @@
             .navbar-item
               a.cta.is-flex(href="tel:+39043421121")
                 .jicon.is-large.mr-3
-                  i.phone
+                  i.phone.ring
                 | 0434 21121
 </template>
 

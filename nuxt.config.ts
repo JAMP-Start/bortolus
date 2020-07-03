@@ -15,17 +15,11 @@ const config: Configuration = {
     ],
     link: [
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap' },
-      // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,500,600,700&display=swap' },
-      // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,500,600,700&display=swap' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ],
-    script: [{
-      src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqstP8RWMwkuJYsaWQ29dZFim3506MteA&language=it', async: true, defer: true
-    }]
+    ]
   },
   loading: { color: '#fff' },
   css: [
-    '@fortawesome/fontawesome-free/css/all.min.css',
     '~/assets/scss/style.scss'
   ],
   pageTransition: {
