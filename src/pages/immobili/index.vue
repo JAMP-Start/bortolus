@@ -14,7 +14,7 @@
           .filters__filter
             label.menu-label {{ strings.filterTipologiaImmobile }}
             .select
-              select(v-model="tipologiaImmobile" @change="filterByTipologiaImmobile()")
+              select(v-model="tipologiaImmobile")
                 option(value="") Tutti
                 option(value="residenziale") Residenziale
                 option(value="non residenziale") Non residenziale
@@ -43,7 +43,8 @@ const stringsModule = namespace('strings')
     return seo(data, lang, this.$route.path)
   },
   watch: {
-    tipologiaAnnuncio: '$fetch'
+    tipologiaAnnuncio: '$fetch',
+    tipologiaImmobile: '$fetch'
   }
 })
 export default class ImmobiliPage extends Vue {
@@ -72,27 +73,19 @@ export default class ImmobiliPage extends Vue {
 
   async fetch(): Promise<any> {
     try {
-      let queryParam: string = 'document.type'
-      let queryValue: string = 'immobile'
+      const params = [Prismic.Predicates.at('document.type', 'immobile')]
       if (this.tipologiaAnnuncio.length) {
-        queryParam = 'my.immobile.tipologia_annuncio'
-        queryValue = this.tipologiaAnnuncio
+        params.push(Prismic.Predicates.at('my.immobile.tipologia_annuncio', this.tipologiaAnnuncio))
       }
-      const { total_pages, results } = await this.$prismic.api.query(Prismic.Predicates.at(queryParam, queryValue), { orderings: '[my.post.date desc]' })
+      if (this.tipologiaImmobile.length) {
+        params.push(Prismic.Predicates.at('my.immobile.tipologia_immobile', this.tipologiaImmobile))
+      }
+      const { total_pages, results } = await this.$prismic.api.query(params, { orderings: '[my.post.date desc]' })
       this.immobiliData = results
       this.immobili = results
-      this.filterByTipologiaImmobile()
       this.pages = total_pages
     } catch (e) {
       console.error(e)
-    }
-  }
-
-  filterByTipologiaImmobile() {
-    if (this.tipologiaImmobile.length) {
-      this.immobili = this.immobiliData.filter(i => i.data.tipologia_immobile === this.tipologiaImmobile)
-    } else {
-      this.immobili = this.immobiliData
     }
   }
 
