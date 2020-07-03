@@ -9,7 +9,7 @@
             figure.image-cover(:class="{ 'has-overlay': item.caption }")
               picture
                 prismic-image(:field="item.image")
-            .gallery__images__caption(v-if="item.caption && swiperReady")
+            .gallery__images__caption.fadeIn(v-if="item.caption && swiperReady")
               prismic-rich-text(:field="item.caption")
         .swiper-button-prev(:id="`prev-${primary.gallery_id}`")
         .swiper-button-next(:id="`next-${primary.gallery_id}`")
@@ -140,18 +140,23 @@ export default class ImageGalleryComponent extends Vue {
 <style lang="scss">
 .gallery {
   &__images {
-    max-height: 90vh;
+    max-height: calc(90vh - 95px);
+    .swiper-slide {
+      max-height: calc(90vh - 95px);
+    }
     position: relative;
     &__caption {
       position: absolute;
-      top: 50%;
+      bottom: 0;
       left: 0;
       z-index: 1;
       background-color: rgba($primary,.6);
       p {
         font-size: 1.75rem;
+        font-weight: 600;
         @media only screen and (min-width: 768px){
           font-size: 2.5rem;
+          bottom: auto;
         }
         @media only screen and (min-width: 1024px){
           font-size: 4rem;
@@ -159,18 +164,22 @@ export default class ImageGalleryComponent extends Vue {
         line-height: 1.5;
         color: $white;
       }
-      text-transform: uppercase;
       font-weight: 700;
       text-align: right;
+      @media only screen and (min-width: 768px){
+        bottom: 10%;
+      }
       @media only screen and (min-width: 1024px){
+        bottom: 30%;
         max-width: 60%;
       }
-      padding: .5rem 1rem .5rem 2rem;
+      padding: .5rem 1rem .5rem 4rem;
     }
     .swiper-slide:nth-of-type(odd) .gallery__images__caption  {
       left: auto;
       right: 0;
       text-align: left;
+      padding: .5rem 4rem .5rem 1rem;
     }
   }
   &--slider {
