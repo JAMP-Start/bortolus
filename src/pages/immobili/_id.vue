@@ -120,8 +120,8 @@ const stringsModule = namespace('strings')
     JSlider, JForm, JMap
   },
   head() {
-    const { data, lang } = this.$data
-    return seo(data, lang, this.$route.path)
+    const { data } = this.$data
+    return seo(data, this.$route.path)
   }
 })
 export default class ImmobilePage extends Vue {

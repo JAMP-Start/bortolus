@@ -40,15 +40,13 @@ export default class JMapComponent extends Vue {
     console.log(marker)
 
     if (this.type === 'streetview') {
-      const mapOptions2 = {
-        position: coords,
-        pov: {
-          heading: 165,
-          pitch: 0
-        }
-      }
-      const streetview = new google.maps.StreetViewPanorama(element, mapOptions2)
-      this.map.setStreetView(streetview)
+      const streetview = this.map.getStreetView()
+      streetview.setPosition(coords)
+      streetview.setPov({
+        heading: 165,
+        pitch: 0
+      })
+      streetview.setVisible(true)
     }
   }
 }

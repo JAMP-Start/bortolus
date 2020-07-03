@@ -25,8 +25,8 @@ const stringsModule = namespace('strings')
     Slice, JForm
   },
   head() {
-    const { data, lang } = this.$data
-    return seo(data, lang, this.$route.path)
+    const { data } = this.$data
+    return seo(data, this.$route.path)
   }
 })
 export default class IndexPage extends Vue {

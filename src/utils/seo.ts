@@ -1,18 +1,19 @@
 import PrismicDom from 'prismic-dom'
 import { isEmpty } from 'lodash'
 
-const defaultDescription = `Bortolus è un'agenzia immobiliare di Pordenone. Tantissime offerte immobiliari vi aspettano.`
+const defaultDescription = 'Bortolus è un`agenzia immobiliare di Pordenone. Tantissime offerte immobiliari vi aspettano.'
+const siteTitle = 'Bortolus mediazioni immobiliari'
 
 const base = process.env.DOMAIN
 
-export default (data: any, lang: string, route: string): any => {
+export default (data: any, route: string): any => {
   if (!data) {
     return {
       title: '404'
     }
   }
 
-  const title = `${data.seo_title || PrismicDom.RichText.asText(data.title)} | Bortolus mediazioni immobiliari`
+  const title = `${data.seo_title || PrismicDom.RichText.asText(data.title)} | ${siteTitle}`
   const description = data.seo_description || (data.page_subtitle ? PrismicDom.RichText.asText(data.page_subtitle) : defaultDescription)
 
   let image = `${base}/images/placeholder.png`

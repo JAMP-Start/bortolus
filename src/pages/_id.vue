@@ -21,8 +21,8 @@ import seo from '~/utils/seo.ts'
     PageHeader, Slice
   },
   head() {
-    const { data, lang } = this.$data
-    return seo(data, lang, this.$route.path)
+    const { data } = this.$data
+    return seo(data, this.$route.path)
   }
 })
 export default class Page extends Vue {

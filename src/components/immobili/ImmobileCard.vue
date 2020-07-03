@@ -13,6 +13,7 @@
           .immobile__details__item {{ immobile.details_superficie }} m
             sup 2
           .immobile__details__item {{ immobile.details_camere }} camere
+          .immobile__details__item {{ immobile.details_bagni }} bagni
           .immobile__details__item {{ immobile.details_piano }}
           .immobile__details__item(v-if="immobile.details_box") {{ immobile.details_box }}
         .is-flex.is-space-between
