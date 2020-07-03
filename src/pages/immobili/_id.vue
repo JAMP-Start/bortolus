@@ -35,8 +35,8 @@
             JSlider(:id="`foto-${data.rif}`" :images="data.images" :key="'foto'")
           .immobile__tabs__tab(v-if="hasPlanimetrie && activeTab === 2")
             JSlider(:id="`planimetria-${data.rif}`" :images="data.images1" :key="'planimetrie'")
-          .immobile__tabs__tab(v-if="activeTab === 3") 
-            iframe#virtualtour(width="100%" height="100%" src="https://poly.google.com/view/eBlTawrKfpe/embed?chrome=min" frameborder="0" style="border:none;" allowvr="yes" allow="vr; xr; accelerometer; magnetometer; gyroscope; autoplay;" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel="")
+          .immobile__tabs__tab(v-if="hasVirtualTour && activeTab === 3")
+            JVirtualTour(:data="data.virtual_tour" :key="'virtual_tour'")
           .immobile__tabs__tab(v-if="activeTab === 4")
             JMap(:data="data.map" type="map" :key="'map'")
           .immobile__tabs__tab(v-if="activeTab === 5")
@@ -50,7 +50,7 @@
             .immobile__details__item__icon.jicon.is-large
               i.planimetrie
             span {{ data.images1.length }} {{ data.images1.length > 1 ? 'planimetrie' : 'planimetria' }}
-          .immobile__details__item(@click="activeTab = 3" :class="{'active': activeTab === 3}")
+          .immobile__details__item(v-if="hasVirtualTour" @click="activeTab = 3" :class="{'active': activeTab === 3}")
             .immobile__details__item__icon.jicon.is-large
               i.virtualtour
             span virtual tour
@@ -110,6 +110,7 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator'
 
 import JSlider from '~/components/common/JSlider.vue'
 import JMap from '~/components/common/JMap.vue'
+import JVirtualTour from '~/components/common/JVirtualTour.vue'
 import JForm from '~/components/common/JForm.vue'
 
 import seo from '~/utils/seo.ts'
@@ -118,7 +119,7 @@ const stringsModule = namespace('strings')
 
 @Component({
   components: {
-    JSlider, JForm, JMap
+    JSlider, JForm, JMap, JVirtualTour
   },
   head() {
     const { data } = this.$data
@@ -134,6 +135,10 @@ export default class ImmobilePage extends Vue {
 
   get hasPlanimetrie(): any {
     return this.data.images1.length
+  }
+
+  get hasVirtualTour(): any {
+    return this.data.virtual_tour && this.data.virtual_tour.url
   }
 
   get details(): any {
