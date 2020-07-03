@@ -76,10 +76,13 @@
           h2 Classe Energetica
           .columns
             .column
-              .immobile__classeenergetica__wrapper
+              .immobile__classeenergetica__wrapper.fadeIn(v-if="!showClasseEnergeticaLegend" @click="showClasseEnergeticaLegend = true")
                 .immobile__classeenergetica(:class="data.classe_energetica_class.toLowerCase()")
                   span(v-if="data.classe_energetica_class") Classe {{ data.classe_energetica_class }}
                   span(v-else) Non disponibile
+              .immobile__classeenergetica__wrapper.immobile__classeenergetica__wrapper--legend.fadeIn(v-if="showClasseEnergeticaLegend" @click="showClasseEnergeticaLegend = false")
+                .immobile__classeenergetica(v-for="(c,index) in classiEnergetiche" :key="index" :class="[c, {'active': c === data.classe_energetica_class.toLowerCase()}]")
+                  span Classe {{ c.toUpperCase() }}
             div.column(v-if="data.classe_energetica_index")
               strong Indice prestazione energetica
               br
@@ -132,6 +135,9 @@ export default class ImmobilePage extends Vue {
   activeTab: number = 1
   lang: string = 'en'
   showCta: boolean = true
+
+  showClasseEnergeticaLegend: boolean = false
+  classiEnergetiche: any = ['a4', 'a3', 'a2', 'a', 'b', 'c', 'd', 'e', 'f', 'g']
 
   get hasPlanimetrie(): any {
     return this.data.images1.length
@@ -265,7 +271,16 @@ export default class ImmobilePage extends Vue {
     }
     &__classeenergetica {
       &__wrapper {
+        cursor: pointer;
         max-width: 300px;
+        &--legend {
+          .immobile__classeenergetica {
+            opacity: .25;
+            &.active {
+              opacity: 1;
+            }
+          }
+        }
       }
       font-weight: 700;
       font-size: 1.5rem;
@@ -330,7 +345,7 @@ export default class ImmobilePage extends Vue {
       }
       &.d {
         background-color: #FFCD28;
-        max-width: 60%;
+        max-width: 80%;
                 &:after {
           border-left-color: #FFCD28;
         }
@@ -379,21 +394,4 @@ export default class ImmobilePage extends Vue {
       background-color: $secondary-dark;
     }
   }
-
-@keyframes fadeInUp {
-  from {
-    transform: translate3d(0, 1rem, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-.fadeInUp {
-  animation-duration: 0.75s;
-  animation-fill-mode: both;
-  animation-delay: 1.5s;
-  opacity: 0;
-  animation-name: fadeInUp;
-}
 </style>

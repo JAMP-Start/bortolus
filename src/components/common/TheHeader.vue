@@ -3,8 +3,6 @@
     nav.navbar(role="navigation", aria-label="main navigation")
       .container
         .navbar-brand
-          nuxt-link.navbar-item(to="/")
-            prismic-image(:field="headerData.logo")
           a.navbar-burger.burger(role="button",
             aria-label="menu",
             aria-expanded="false",
@@ -14,6 +12,12 @@
             span(aria-hidden="true")
             span(aria-hidden="true")
             span(aria-hidden="true")
+          nuxt-link.navbar-item(to="/")
+            prismic-image(:field="headerData.logo")
+          a.cta--mobile.is-flex(href="tel:+39043421121")
+            .jicon.mr-1
+              i.phone
+            | 0434 21121
         .navbar-menu(:class="{ 'is-active': toggleMenu }" @click="toggleMenu = !toggleMenu")
           .navbar-end
             .navbar-item.is-hoverable(v-for="(item, index) in menu",
@@ -93,14 +97,22 @@ export default class TheHeaderComponent extends Vue {
   top: 0;
   z-index: 4;
 }
-.navbar-brand img {
-  max-height: 50px;
-  @media screen and (min-width: 768px) {
-    max-height: 80px;
+.navbar-brand {
+  justify-content: space-between;
+  img {
+    max-height: 40px;
+    @media screen and (min-width: 400px) {
+      max-height: 50px;
+    }
+    @media screen and (min-width: 768px) {
+      max-height: 80px;
+    }
   }
 }
 .navbar-burger {
   height: auto;
+  margin-left: 0;
+  margin-right: 0;
 }
 .navbar-item {
   text-transform: uppercase;
@@ -139,7 +151,19 @@ export default class TheHeaderComponent extends Vue {
   }
 }
 .cta {
-  font-size: 2rem;
+  &--mobile {
+    align-self: center;
+    text-align: right;
+    margin-right: .5rem;
+    font-weight: 600;
+    @media screen and (min-width: 1024px) {
+      display: none!important;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    display: none!important;
+  }
+  font-size: 1.75rem;
   .jicon, i {
     width: 3rem;
     height: 3rem;
