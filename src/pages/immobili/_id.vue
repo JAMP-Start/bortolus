@@ -35,7 +35,8 @@
             JSlider(:id="`foto-${data.rif}`" :images="data.images" :key="'foto'")
           .immobile__tabs__tab(v-if="hasPlanimetrie && activeTab === 2")
             JSlider(:id="`planimetria-${data.rif}`" :images="data.images1" :key="'planimetrie'")
-          .immobile__tabs__tab(v-if="activeTab === 3") Virtual Tour
+          .immobile__tabs__tab(v-if="activeTab === 3") 
+            iframe#virtualtour(width="100%" height="100%" src="https://poly.google.com/view/eBlTawrKfpe/embed?chrome=min" frameborder="0" style="border:none;" allowvr="yes" allow="vr; xr; accelerometer; magnetometer; gyroscope; autoplay;" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel="")
           .immobile__tabs__tab(v-if="activeTab === 4")
             JMap(:data="data.map" type="map" :key="'map'")
           .immobile__tabs__tab(v-if="activeTab === 5")
@@ -48,7 +49,7 @@
           .immobile__details__item(v-if="hasPlanimetrie" @click="activeTab = 2" :class="{'active': activeTab === 2}")
             .immobile__details__item__icon.jicon.is-large
               i.planimetrie
-            span {{data.images1.length }} planimetrie
+            span {{ data.images1.length }} {{ data.images1.length > 1 ? 'planimetrie' : 'planimetria' }}
           .immobile__details__item(@click="activeTab = 3" :class="{'active': activeTab === 3}")
             .immobile__details__item__icon.jicon.is-large
               i.virtualtour
@@ -194,11 +195,17 @@ export default class ImmobilePage extends Vue {
           padding: 1rem;
           font-size: 1.2rem;
         }
+        &__icon {
+          opacity: .4;
+        }
       }
       &__links {
         .immobile__details__item {
           color: $black;
           background-color: $primary-light;
+          &__icon {
+            opacity: 1;
+          }
           cursor: pointer;
           border: 4px solid transparent;
           transition: all .4s;
