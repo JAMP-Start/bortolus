@@ -60,10 +60,16 @@ a {
 
 // Icons
 .jicon {
-    &.is-medium {
+    &.is-small {
         i {
             width: 2em;
             height: 2rem;
+        }
+    }
+    &.is-medium {
+        i {
+            width: 3rem;
+            height:3rem;
         }
     }
     &.is-large {

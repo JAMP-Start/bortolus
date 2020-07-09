@@ -6,7 +6,9 @@
           .is-flex.is-space-between
             div
               prismic-rich-text(:field="data.title")
-              div.has-text-weight-bold.is-size-4.has-text-grey  rif. {{ data.rif }}
+              div.has-text-weight-bold.is-size-4.has-text-grey
+                span rif. {{ data.rif }}
+                span.has-text-weight-normal.is-size-6.ml-2 - Pubblicato il {{ data.date | date }}
             div.has-text-weight-bold.is-size-2  € {{ data.price }}
         .immobile__details
           .immobile__details__item(v-if="data.details_superficie")
