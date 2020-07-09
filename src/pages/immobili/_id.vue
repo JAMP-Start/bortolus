@@ -28,7 +28,7 @@
             span {{ data.details_piano }}
           .immobile__details__item(v-if="data.details_box")
             .immobile__details__item__icon.jicon.is-large
-              i.boxauto
+              i(:class="hasAutorimessa ? 'autorimessa' : 'postoauto'")
             span {{ data.details_box }}
         .immobile__tabs.my-4
           .immobile__tabs__tab(v-if="activeTab === 1")
@@ -148,6 +148,10 @@ export default class ImmobilePage extends Vue {
 
   get hasVirtualTour(): any {
     return this.data.virtual_tour && this.data.virtual_tour.url
+  }
+
+  get hasAutorimessa(): any {
+    return this.data.details_box.toLowerCase().includes('autorimessa') || this.data.details_box.toLowerCase().includes('garage')
   }
 
   get details(): any {

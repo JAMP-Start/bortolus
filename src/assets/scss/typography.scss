@@ -68,8 +68,8 @@ a {
     }
     &.is-large {
         i {
-            width: 3rem;
-            height: 3rem;
+            width: 5rem;
+            height: 5rem;
         }
     }
     i {
@@ -91,8 +91,11 @@ a {
         &.piano {
             background-image: url('/svg/piano.svg');
         }
-        &.boxauto {
-            background-image: url('/svg/boxauto.svg');
+        &.postoauto {
+            background-image: url('/svg/postoauto.svg');
+        }
+        &.autorimessa {
+            background-image: url('/svg/autorimessa.svg');
         }
         &.foto {
             background-image: url('/svg/foto.svg');
