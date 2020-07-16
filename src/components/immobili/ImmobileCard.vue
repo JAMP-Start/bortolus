@@ -1,7 +1,7 @@
 <template lang="pug">
   .immobile
     .immobile__image
-      JSlider(:id="`thumb-${immobile.rif}`" :images="immobile.images" ratio="4/3" :key="`thumb-${immobile.rif}`")
+      JSlider(:id="`thumb-${immobile.rif | slug}`" :images="immobile.images" ratio="4/3" :key="`thumb-${immobile.rif | slug}`")
     .immobile__content
       .immobile__content__top
         h6.immobile__zone {{ immobile.zona }}
@@ -10,15 +10,17 @@
         .immobile__rif rif. {{ immobile.rif }}
       .immobile__content__bottom
         .immobile__details.is-inline-flex.mb-2
-          .immobile__details__item {{ immobile.details_superficie }} m
+          .immobile__details__item(v-if="immobile.details_superficie")  {{ immobile.details_superficie }} m
             sup 2
-          .immobile__details__item {{ immobile.details_camere }} {{ immobile.details_camere > 1 ? 'camere' : 'camera' }}
-          .immobile__details__item {{ immobile.details_bagni }} {{ immobile.details_bagni > 1 ? 'bagni' : 'bagno' }}
-          .immobile__details__item {{ immobile.details_piano }}
+          .immobile__details__item(v-if="immobile.details_camere") {{ immobile.details_camere }} {{ immobile.details_camere > 1 ? 'camere' : 'camera' }}
+          .immobile__details__item(v-if="immobile.details_bagni")  {{ immobile.details_bagni }} {{ immobile.details_bagni > 1 ? 'bagni' : 'bagno' }}
+          .immobile__details__item(v-if="immobile.details_piano")  {{ immobile.details_piano }}
           .immobile__details__item(v-if="immobile.details_box") {{ immobile.details_box }}
         .is-flex.is-space-between
           JLink.immobile__button.button.is-primary.mt-0(:linkUrl="data") {{ strings.discoverMore }}
-          div.immobile__price € {{ immobile.price }}
+          div.immobile__price
+            template(v-if="immobile.price") € {{ immobile.price }}
+            template(v-else) Prezzo su richiesta
 </template>
 
 <script lang="ts">

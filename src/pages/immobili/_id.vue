@@ -9,14 +9,16 @@
               div.has-text-weight-bold.is-size-4.has-text-grey
                 span rif. {{ data.rif }}
                 span.has-text-weight-normal.is-size-6.ml-2 - Pubblicato il {{ data.date | date }}
-            div.has-text-weight-bold.is-size-2  € {{ data.price }}
+            div.has-text-weight-bold.is-size-2
+              template(v-if="data.price") € {{ data.price }}
+              template(v-else) Prezzo su richiesta
         .immobile__details
           .immobile__details__item(v-if="data.details_superficie")
             .immobile__details__item__icon.jicon.is-large
               i.superficie
             span {{ data.details_superficie }} m
               sup 2
-          .immobile__details__item
+          .immobile__details__item(v-if="data.details_camere")
             .immobile__details__item__icon.jicon.is-large
               i.camere
             span {{ data.details_camere }} {{ data.details_camere > 1 ? 'camere' : 'camera' }}
@@ -34,9 +36,9 @@
             span {{ data.details_box }}
         .immobile__tabs.my-4
           .immobile__tabs__tab(v-if="activeTab === 1")
-            JSlider(:id="`foto-${data.rif}`" :images="data.images" :key="'foto'")
+            JSlider(:id="`foto-${data.rif | slug}`" :images="data.images" :key="'foto'")
           .immobile__tabs__tab(v-if="hasPlanimetrie && activeTab === 2")
-            JSlider(:id="`planimetria-${data.rif}`" :images="data.images1" :key="'planimetrie'")
+            JSlider(:id="`planimetria-${data.rif | slug}`" :images="data.images1" :key="'planimetrie'")
           .immobile__tabs__tab(v-if="hasVirtualTour && activeTab === 3")
             JVirtualTour(:data="data.virtual_tour" :key="'virtual_tour'")
           .immobile__tabs__tab(v-if="activeTab === 4")
@@ -74,7 +76,7 @@
               li(v-for="(value, key) in details" :key="key" v-if="value")
                 strong {{ key | label }}
                 span {{ value }}
-        section.section
+        section.section(v-if="data.classe_energetica_class")
           h2 Classe Energetica
           .columns
             .column

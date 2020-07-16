@@ -22,3 +22,9 @@ Vue.filter('label', function (value) {
     return value.replace('details_', '').replace(/-/g, ' ')
   }
 })
+
+Vue.filter('slug', function (value) {
+  if (value) {
+    return value.trim().replace(/\s/g, '-')
+  }
+})
