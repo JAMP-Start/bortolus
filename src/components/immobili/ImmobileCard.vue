@@ -12,8 +12,8 @@
         .immobile__details.is-inline-flex.mb-2
           .immobile__details__item {{ immobile.details_superficie }} m
             sup 2
-          .immobile__details__item {{ immobile.details_camere }} camere
-          .immobile__details__item {{ immobile.details_bagni }} bagni
+          .immobile__details__item {{ immobile.details_camere }} {{ immobile.details_camere > 1 ? 'camere' : 'camera' }}
+          .immobile__details__item {{ immobile.details_bagni }} {{ immobile.details_bagni > 1 ? 'bagni' : 'bagno' }}
           .immobile__details__item {{ immobile.details_piano }}
           .immobile__details__item(v-if="immobile.details_box") {{ immobile.details_box }}
         .is-flex.is-space-between

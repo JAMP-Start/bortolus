@@ -19,11 +19,11 @@
           .immobile__details__item
             .immobile__details__item__icon.jicon.is-large
               i.camere
-            span {{ data.details_camere }} camere
+            span {{ data.details_camere }} {{ data.details_camere > 1 ? 'camere' : 'camera' }}
           .immobile__details__item(v-if="data.details_bagni")
             .immobile__details__item__icon.jicon.is-large
               i.bagni
-            span {{ data.details_bagni }} bagni
+            span {{ data.details_bagni }} {{ data.details_bagni > 1 ? 'bagni' : 'bagno' }}
           .immobile__details__item(v-if="data.details_piano")
             .immobile__details__item__icon.jicon.is-large
               i.piano
@@ -130,7 +130,8 @@ const stringsModule = namespace('strings')
     const { data } = this.$data
     return {
       ...seo(data, this.$route.path),
-      script: [{ src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqstP8RWMwkuJYsaWQ29dZFim3506MteA&language=it', async: true, defer: true }]
+      // script: [{ src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqstP8RWMwkuJYsaWQ29dZFim3506MteA&language=it', async: true, defer: true }]
+      script: [{ src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCjrMNikptyuNaCOzgdxtg1ZXLPpnYGfqw&language=it', async: true, defer: true }]
     }
   }
 })

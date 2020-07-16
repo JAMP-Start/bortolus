@@ -44,7 +44,7 @@
           .navbar-end
             .navbar-item
               a.cta.is-flex(href="tel:+39043421121")
-                .jicon.is-medium.mr-3
+                .jicon.is-small.mr-3
                   i.phone.ring
                 | 0434 21121
 </template>
@@ -163,10 +163,14 @@ export default class TheHeaderComponent extends Vue {
   @media screen and (max-width: 1024px) {
     display: none!important;
   }
-  font-size: 1.75rem;
-  .jicon, i {
-    width: 3rem;
-    height: 3rem;
+  align-items: center;
+  font-size: 1.5rem;
+  .jicon {
+    display: flex;
+    i {
+      width: 3rem;
+      height: 3rem;
+    }
   }
 }
 </style>

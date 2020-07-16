@@ -5,7 +5,7 @@
         prismic-rich-text(:field="primary.content")
       .swiper-container#carousel.pb-0(v-if="primary.display_as_carousel")
         .swiper-wrapper
-          .swiper-slide(v-for="(item, index) in items" :key="index")
+          .swiper-slide(v-for="(item, index) in items" :key="index" v-if="item.data.stato")
             ImmobileCard(v-if="swiperReady" :data="item")
         .swiper-button-prev#carousel-prev
         .swiper-button-next#carousel-next
