@@ -82,7 +82,9 @@ export default class JFormComponent extends Vue {
 
 <style lang="scss">
 .input, .textarea {
-  border: 2px dashed $black;
+  // border: 2px dashed $black;
+  background-color: $white;
+  border: none;
   box-shadow: none;
   font-family: $font-primary;
   font-weight: 600;
