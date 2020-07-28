@@ -113,6 +113,7 @@ export default class TheHeaderComponent extends Vue {
   height: auto;
   margin-left: 0;
   margin-right: 0;
+  transform: scale(1.5);
 }
 .navbar-item {
   text-transform: uppercase;
@@ -123,6 +124,14 @@ export default class TheHeaderComponent extends Vue {
   }
 }
 
+@media screen and (max-width: 1023px){
+  .navbar-menu.is-active {
+      position: absolute;
+      width: 100%;
+      max-width: 420px;
+      // background-color: $white;
+  }
+}
 @media screen and (min-width: 1024px) {
   .navbar-item .navbar-dropdown .navbar-item {
     &.navbar-link:not(.is-arrowless):after {

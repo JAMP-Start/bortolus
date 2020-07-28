@@ -74,6 +74,7 @@ export default class ImmobileCardComponent extends Vue {
     flex: 1;
   }
   &__zone {
+    font-size: 1.2rem;
     color: $secondary!important;
   }
   &__title {
@@ -96,7 +97,8 @@ export default class ImmobileCardComponent extends Vue {
     font-size: .9rem;
     &__item {
       background-color: $grey-lighter;
-      color: $grey;
+      font-weight: 600;
+      color: $grey-dark;
       border-radius: 3px;
       padding: .2rem .6rem;
       margin: .25rem;

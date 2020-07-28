@@ -215,7 +215,7 @@ export default class ImmobilePage extends Vue {
         padding: .25rem;
         border-radius: 6px;
         @media only screen and (min-width: 768px){
-          padding: 1rem;
+          padding-bottom: 1rem;
           font-size: 1.2rem;
         }
         &__icon {

@@ -32,6 +32,13 @@ p {
 }
 
 // Links
+.button {
+    font-size: 1.1rem!important;
+    padding-left: calc(.5em + .5em);
+    padding-right: calc(.5em + .5em);
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+}
 a {
     position: relative;
     &:hover:not(.button) {
@@ -77,8 +84,8 @@ a {
             width: 4.5rem;
             height: 4.5rem;
             @media screen and (min-width: 769px) {
-            width: 6rem;
-            height: 6rem;
+            width: 5.5rem;
+            height: 5.5rem;
             }
         }
     }

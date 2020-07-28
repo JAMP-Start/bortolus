@@ -3,21 +3,24 @@
     PageHeader(:data="data")
     section.section.mt-0
       .container
-        .filters
-          .filters__filter
-            label.menu-label {{ strings.filterTipologiaAnnuncio }}
-            .select
-              select(v-model="tipologiaAnnuncio")
-                option(value="") Tutti
-                option(value="vendita") Vendita
-                option(value="affitto") Affitto
-          .filters__filter
-            label.menu-label {{ strings.filterTipologiaImmobile }}
-            .select
-              select(v-model="tipologiaImmobile")
-                option(value="") Tutti
-                option(value="residenziale") Residenziale
-                option(value="non residenziale") Non residenziale
+        .is-flex(style="justify-content:space-between; align-items: center; flex-wrap: wrap;")
+          .content
+            h1 I nostri immobili
+          .filters
+            .filters__filter
+              label.menu-label {{ strings.filterTipologiaAnnuncio }}
+              .select
+                select(v-model="tipologiaAnnuncio")
+                  option(value="") Tutti
+                  option(value="vendita") Vendita
+                  option(value="affitto") Affitto
+            .filters__filter
+              label.menu-label {{ strings.filterTipologiaImmobile }}
+              .select
+                select(v-model="tipologiaImmobile")
+                  option(value="") Tutti
+                  option(value="residenziale") Residenziale
+                  option(value="non residenziale") Non residenziale
         .content.mt-4(v-if="!$fetchState.pending")
           ImmobileCardList(:immobili="immobili")
         div.loadingComponent(v-else)
