@@ -120,7 +120,7 @@ export default class ImmobiliPage extends Vue {
     }
     select {
       border: 2px solid $black;
-      
+      padding-right: 3em;
       &:focus {
         border-color: $primary;
         outline: none;
