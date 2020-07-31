@@ -118,7 +118,8 @@ export default class TheHeaderComponent extends Vue {
 .navbar-item {
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
   .nuxt-link-exact-active {
     text-decoration: underline;
   }

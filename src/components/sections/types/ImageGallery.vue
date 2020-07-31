@@ -11,9 +11,9 @@
                 prismic-image(:field="item.image")
             .gallery__images__caption.fadeIn(v-if="item.caption && swiperReady")
               prismic-rich-text(:field="item.caption")
-        .swiper-button-prev(:id="`prev-${primary.gallery_id}`")
-        .swiper-button-next(:id="`next-${primary.gallery_id}`")
-        .swiper-pagination(:id="`pagination-${primary.gallery_id}`")
+        .swiper-button-prev(v-if="!hasOneImage" :id="`prev-${primary.gallery_id}`")
+        .swiper-button-next(v-if="!hasOneImage" :id="`next-${primary.gallery_id}`")
+        .swiper-pagination(v-if="!hasOneImage" :id="`pagination-${primary.gallery_id}`")
         //- .swiper-scrollbar
 </template>
 
@@ -60,6 +60,9 @@ export default class ImageGalleryComponent extends Vue {
           _self.swiperReady = true
         }
       }
+    }
+    if (this.hasOneImage) {
+      swiperOptions.autoplay = false
     }
     // // Type: 'carousel
     if (this.galleryType === 'carousel') {
@@ -128,6 +131,10 @@ export default class ImageGalleryComponent extends Vue {
 
   get galleryType(): any {
     return this.data.primary.type
+  }
+
+  get hasOneImage(): any {
+    return this.data.items.length <= 1
   }
 
   get isGrid(): any {

@@ -110,8 +110,17 @@ export default class ImmobiliPage extends Vue {
   flex-flow: row wrap;
   margin-bottom: 2.5em;
   &__filter {
+    .select:before {
+      content: '';
+      background: $primary;
+      width: 44px;
+      height: 100%;
+      position: absolute;
+      right: 0;
+    }
     select {
       border: 2px solid $black;
+      
       &:focus {
         border-color: $primary;
         outline: none;

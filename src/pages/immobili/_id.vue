@@ -11,7 +11,7 @@
                 span.has-text-weight-normal.is-size-6.ml-2 - Pubblicato il {{ data.date | date }}
             div.has-text-weight-bold.is-size-2
               template(v-if="data.price") € {{ data.price }}
-              template(v-else) Prezzo su richiesta
+              div.is-size-3(v-else) Prezzo su richiesta
         .immobile__details
           .immobile__details__item(v-if="data.details_superficie")
             .immobile__details__item__icon.jicon.is-large
@@ -209,7 +209,7 @@ export default class ImmobilePage extends Vue {
       &__item {
         text-align: center;
         background-color: $grey-lighter;
-        color: $grey;
+        color: $grey-dark;
         font-weight: 600;
         font-size: 12px;
         padding: .25rem;
@@ -219,7 +219,7 @@ export default class ImmobilePage extends Vue {
           font-size: 1.2rem;
         }
         &__icon {
-          opacity: .4;
+          opacity: .5;
         }
       }
       &__links {

@@ -60,6 +60,10 @@ $gap-size: 1.5rem;
         }
     }
 }
+.has-background-secondary {
+    background-color: $secondary!important;
+    color: $white;
+}
 
 .section__content {
     background-color: $primary-light;
