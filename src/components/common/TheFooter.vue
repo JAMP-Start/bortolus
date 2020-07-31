@@ -10,9 +10,9 @@ div
             NavigationMenu(:navigation="column.primary")
     .footer__bottom
       .container.columns
-        .column.is-6.has-text-centered.has-text-left-desktop
+        .column.is-8.has-text-centered.has-text-left-desktop
           prismic-rich-text(v-if="footerData.footer_bottom", :field="footerData.footer_bottom")
-        .column.is-6.has-text-center.has-text-right-desktop
+        .column.is-4.has-text-center.has-text-right-desktop
           .d-flex
             nuxt-link.mr-4(to="/privacy-policy") Privacy Policy
             nuxt-link(to="/cookie-policy") Cookie Policy
