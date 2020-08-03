@@ -36,9 +36,9 @@
             span {{ data.details_box }}
         .immobile__tabs.my-4
           .immobile__tabs__tab(v-if="activeTab === 1")
-            JSlider(:id="`foto-${data.rif | slug}`" :images="data.images" :key="'foto'")
+            JSlider(:id="`foto-${this.$options.filters.slug(data.rif)}`" :images="data.images" :key="'foto'")
           .immobile__tabs__tab(v-if="hasPlanimetrie && activeTab === 2")
-            JSlider(:id="`planimetria-${data.rif | slug}`" :images="data.images1" :key="'planimetrie'")
+            JSlider(:id="`planimetria-${this.$options.filters.slug(data.rif)}`" :images="data.images1" :key="'planimetrie'")
           .immobile__tabs__tab(v-if="hasVirtualTour && activeTab === 3")
             JVirtualTour(:data="data.virtual_tour" :key="'virtual_tour'")
           .immobile__tabs__tab(v-if="activeTab === 4")

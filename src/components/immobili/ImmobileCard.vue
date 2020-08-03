@@ -1,7 +1,7 @@
 <template lang="pug">
   .immobile
     .immobile__image
-      JSlider(:id="`thumb-${immobile.rif | slug}`" :images="immobile.images" ratio="4/3" :key="`thumb-${immobile.rif | slug}`")
+      JSlider(:id="`thumb-${this.$options.filters.slug(immobile.rif)}`" :images="immobile.images" ratio="4/3" :key="`thumb-${this.$options.filters.slug(immobile.rif)}`")
     .immobile__content
       .immobile__content__top
         h6.immobile__zone {{ immobile.zona }}
@@ -79,7 +79,7 @@ export default class ImmobileCardComponent extends Vue {
   }
   &__title {
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   &__date {
     color: $secondary;
