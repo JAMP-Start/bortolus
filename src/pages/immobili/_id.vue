@@ -9,7 +9,7 @@
               div.has-text-weight-bold.is-size-4.has-text-grey
                 span rif. {{ data.rif }}
                 span.has-text-weight-normal.is-size-6.ml-2 - Pubblicato il {{ data.date | date }}
-            div.has-text-weight-bold.is-size-2
+            h6.has-text-weight-bold.is-size-2.mb-0
               template(v-if="data.price") € {{ data.price }}
               div.is-size-3(v-else) Prezzo su richiesta
         .immobile__details
@@ -88,9 +88,10 @@
                 .immobile__classeenergetica(v-for="(c,index) in classiEnergetiche" :key="index" :class="[c, {'active': c === data.classe_energetica_class.toLowerCase()}]")
                   span Classe {{ c.toUpperCase() }}
             div.column(v-if="data.classe_energetica_index")
-              strong Indice prestazione energetica
-              br
-              span {{ data.classe_energetica_index }}
+              p
+                strong Indice prestazione energetica
+                br
+                span {{ data.classe_energetica_index }}
         section.section(v-if="data.caratteristiche")
           h2 Caratteristiche Immobile
           .buttons.immobile__caratteristiche
@@ -152,15 +153,15 @@ export default class ImmobilePage extends Vue {
   }
 
   get hasVirtualTour(): any {
-    return this.data.virtual_tour && this.data.virtual_tour.url
+    return this.data.virtual_tour && this.data.virtual_tour.embed_url
   }
 
   get hasAutorimessa(): any {
-    return this.data.details_box.toLowerCase().includes('autorimessa') || this.data.details_box.toLowerCase().includes('garage')
+    return this.data.details_box.toLowerCase().includes('autorimessa') || this.data.details_box.toLowerCase().includes('box') || this.data.details_box.toLowerCase().includes('garage')
   }
 
   get details(): any {
-    return Object.keys(this.data).filter(key => !key.indexOf('details_')).reduce((obj, key) => {
+    return Object.keys(this.data).filter(key => !key.indexOf('details_') && key !== 'details_box').reduce((obj, key) => {
       obj[key] = this.data[key]
       return obj
     }, {})
@@ -214,6 +215,10 @@ export default class ImmobilePage extends Vue {
         font-size: 12px;
         padding: .25rem;
         border-radius: 6px;
+        span {
+          display: block;
+          margin-top: -1rem;
+        }
         @media only screen and (min-width: 768px){
           padding-bottom: 1rem;
           font-size: 1.2rem;
@@ -260,7 +265,7 @@ export default class ImmobilePage extends Vue {
       display: inline-grid;
       align-items: center;
       grid-template-columns: 1fr;
-      grid-gap: 1rem;
+      grid-gap: .4rem;
       width: 100%;
       margin: 0;
       padding: 0;
@@ -270,7 +275,16 @@ export default class ImmobilePage extends Vue {
       }
       li {
         display: inline-grid;
-        grid-template-columns: 3fr 1fr;
+        @media only screen and (min-width: 480px){
+          grid-template-columns: 1fr 1fr;
+          span {
+            margin-top: 0!important;
+          }
+        }
+        grid-template-columns: 1fr;
+        span {
+          margin-top: -.5rem;
+        }
         strong {
           text-transform: capitalize;
         }

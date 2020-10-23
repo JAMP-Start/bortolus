@@ -2,7 +2,7 @@
   div(style="max-width: 960px;")
     FormulateForm(@submit="handleSubmit" v-model="formData" :id="formType" :name="formType" method="post" netlify data-netlify-honeypot="bot-field")
       .section__content
-        h4 {{ strings.formTitle }}
+        h3 {{ strings.formTitle }}
         FormulateInput(type="hidden" name="form-name")
         FormulateInput(type="hidden" name="type")
         FormulateInput(type="hidden" name="rif")
@@ -23,7 +23,7 @@
           br
           span
             | Altrimenti, chiamaci allo
-            a.ml-1(href="tel:+30043421121") 0434 21121.
+            a.ml-1(href="tel:+39043421121") 0434 21121.
             | Grazie.
 </template>
 
@@ -86,10 +86,11 @@ export default class JFormComponent extends Vue {
   background-color: $white;
   border: none;
   box-shadow: none;
-  font-family: $font-primary;
+  font-family: $font-secondary;
   font-weight: 600;
   letter-spacing: 1px;
   box-shadow: none!important;
+  font-size: 1.1rem;
   &:focus {
     border-style: solid;
   }

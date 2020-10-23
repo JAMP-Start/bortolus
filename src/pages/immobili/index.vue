@@ -8,17 +8,17 @@
             h1 I nostri immobili
           .filters
             .filters__filter
-              label.menu-label {{ strings.filterTipologiaAnnuncio }}
+              //- label.menu-label {{ strings.filterTipologiaAnnuncio }}
               .select
                 select(v-model="tipologiaAnnuncio")
-                  option(value="") Tutti
+                  //- option(value="") Tutti
                   option(value="vendita") Vendita
                   option(value="affitto") Affitto
             .filters__filter
-              label.menu-label {{ strings.filterTipologiaImmobile }}
+              //- label.menu-label {{ strings.filterTipologiaImmobile }}
               .select
                 select(v-model="tipologiaImmobile")
-                  option(value="") Tutti
+                  //- option(value="") Tutti
                   option(value="residenziale") Residenziale
                   option(value="non residenziale") Non residenziale
         .content.mt-4(v-if="!$fetchState.pending")
@@ -57,11 +57,11 @@ export default class ImmobiliPage extends Vue {
   immobiliData: any = []
   pages: number = 0
   lang: string = 'it'
-  tipologiaAnnuncio: string = ''
-  tipologiaImmobile: string = ''
+  tipologiaAnnuncio: string = 'vendita'
+  tipologiaImmobile: string = 'residenziale'
 
   mounted() {
-    this.$route.query.tipologia_annuncio ? this.tipologiaAnnuncio = this.$route.query.tipologia_annuncio.toString() : this.tipologiaAnnuncio = ''
+    this.$route.query.tipologia_annuncio ? this.tipologiaAnnuncio = this.$route.query.tipologia_annuncio.toString() : this.tipologiaAnnuncio = 'vendita'
   }
 
   async asyncData({ app, error }): Promise<any> {
@@ -110,6 +110,8 @@ export default class ImmobiliPage extends Vue {
   flex-flow: row wrap;
   margin-bottom: 2.5em;
   &__filter {
+    margin-top: .25rem;
+    margin-bottom: .25rem;
     .select:before {
       content: '';
       background: $primary;
@@ -120,7 +122,7 @@ export default class ImmobiliPage extends Vue {
     }
     select {
       border: 2px solid $black;
-      padding-right: 3em;
+      padding-right: 3em!important;
       &:focus {
         border-color: $primary;
         outline: none;

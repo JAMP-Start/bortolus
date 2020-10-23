@@ -17,7 +17,6 @@
           a.cta--mobile.is-flex(href="tel:+39043421121")
             .jicon.mr-1
               i.phone
-            | 0434 21121
         .navbar-menu(:class="{ 'is-active': toggleMenu }" @click="toggleMenu = !toggleMenu")
           .navbar-end
             .navbar-item.is-hoverable(v-for="(item, index) in menu",
@@ -118,8 +117,8 @@ export default class TheHeaderComponent extends Vue {
 .navbar-item {
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  padding: 0.5rem 1.25rem;
   .nuxt-link-exact-active {
     text-decoration: underline;
   }

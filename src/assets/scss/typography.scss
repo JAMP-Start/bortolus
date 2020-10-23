@@ -1,13 +1,18 @@
 // Base
 p,ul {
     color: $black;
-    line-height: 2;
+    line-height: 1.75;
     font-size: 1.2rem;
+}
+
+.section, .section__content {
+    font-family: $font-secondary;
 }
 
 .content {
     h1, h2, h3, h4, h5, h6 {
         color: $black;
+        font-family: $font-primary;
     }
     ul.ul {
         margin-left: 0;
@@ -35,6 +40,7 @@ p,ul {
 
 // Links
 .button {
+    font-family: $font-primary;
     font-size: 1.1rem!important;
     padding-left: calc(.5em + .5em);
     padding-right: calc(.5em + .5em);

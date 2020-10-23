@@ -43,7 +43,6 @@ export default class VideoSectionComponent extends Vue {
 .video__wrapper {
   margin: 0 auto;
   max-width: 1024px;
-
   div {
     position: relative;
     overflow: hidden;
