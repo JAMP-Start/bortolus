@@ -22,7 +22,6 @@ export default class JMapComponent extends Vue {
 
   mounted() {
     const element = this.$refs['map-' + this.type]
-    console.log(element)
     const coords = new google.maps.LatLng(this.data['latitude'], this.data['longitude'])
     const mapOptions = {
       center: coords,
