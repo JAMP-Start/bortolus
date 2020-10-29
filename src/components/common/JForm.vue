@@ -68,7 +68,7 @@ export default class JFormComponent extends Vue {
     })
       .then(() => {
         this.isSubmitted = true
-         this.$formulate.reset(this.formType, {})
+        this.$formulate.reset(this.formType, {})
       })
       .catch(() => { this.isNotSubmitted = true })
     this.isSubmitting = false
