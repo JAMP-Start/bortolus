@@ -15,7 +15,9 @@
           .immobile__details__item(v-if="immobile.details_camere") {{ immobile.details_camere }} {{ immobile.details_camere > 1 ? 'camere' : 'camera' }}
           .immobile__details__item(v-if="immobile.details_bagni")  {{ immobile.details_bagni }} {{ immobile.details_bagni > 1 ? 'bagni' : 'bagno' }}
           .immobile__details__item(v-if="immobile.details_piano")  {{ immobile.details_piano }}
-          .immobile__details__item(v-if="immobile.details_box") {{ immobile.details_box }}
+          .immobile__details__item(v-if="immobile.details_box") {{ immobile.details_box }} autorimessa
+          .immobile__details__item(v-if="immobile['details_posto-auto']") {{ immobile['details_posto-auto'] }} {{ immobile['details_posto-auto'] > 1 ? 'posti auto' : 'posto auto' }}
+
         .is-flex.is-space-between
           JLink.immobile__button.button.is-primary.mt-0(:linkUrl="data") {{ strings.discoverMore }}
           div.immobile__price

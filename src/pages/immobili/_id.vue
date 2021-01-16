@@ -32,8 +32,12 @@
             span {{ data.details_piano }}
           .immobile__details__item(v-if="data.details_box")
             .immobile__details__item__icon.jicon.is-large
-              i(:class="hasAutorimessa ? 'autorimessa' : 'postoauto'")
-            span {{ data.details_box }}
+              i.autorimessa
+            span {{ data.details_box }} autorimessa
+          .immobile__details__item(v-if="data['details_posto-auto']")
+            .immobile__details__item__icon.jicon.is-large
+              i.postoauto
+            span {{ data['details_posto-auto'] }} {{ data['details_posto-auto'] > 1 ? 'posti auto' : 'posto auto' }}
         .immobile__tabs.my-4
           .immobile__tabs__tab(v-if="activeTab === 1")
             JSlider(:id="`foto-${this.$options.filters.slug(data.rif)}`" :images="data.images" :key="'foto'")
@@ -82,7 +86,9 @@
             .column
               .immobile__classeenergetica__wrapper.fadeIn(v-if="!showClasseEnergeticaLegend" @click="showClasseEnergeticaLegend = true")
                 .immobile__classeenergetica(:class="data.classe_energetica_class.toLowerCase()")
-                  span(v-if="data.classe_energetica_class") Classe {{ data.classe_energetica_class }}
+                  template(v-if="data.classe_energetica_class")
+                    span(v-if="data.classe_energetica_class.length > 4") {{ data.classe_energetica_class }}
+                    span(v-else) Classe {{ data.classe_energetica_class }}
                   span(v-else) Non disponibile
               .immobile__classeenergetica__wrapper.immobile__classeenergetica__wrapper--legend.fadeIn(v-if="showClasseEnergeticaLegend" @click="showClasseEnergeticaLegend = false")
                 .immobile__classeenergetica(v-for="(c,index) in classiEnergetiche" :key="index" :class="[c, {'active': c === data.classe_energetica_class.toLowerCase()}]")
