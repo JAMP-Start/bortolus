@@ -9,7 +9,7 @@
             figure.image-cover(:class="{ 'has-overlay': item.caption }")
               picture
                 prismic-image(:field="item.image")
-            .gallery__images__caption.fadeIn(v-if="item.caption && swiperReady")
+            .gallery__images__caption.fadeIn(v-if="item.caption && item.caption.length && swiperReady")
               prismic-rich-text(:field="item.caption")
         .swiper-button-prev(v-if="!hasOneImage" :id="`prev-${primary.gallery_id}`")
         .swiper-button-next(v-if="!hasOneImage" :id="`next-${primary.gallery_id}`")
@@ -146,6 +146,11 @@ export default class ImageGalleryComponent extends Vue {
 
 <style lang="scss">
 .gallery {
+  &--nooverlay {
+    .has-overlay {
+      &:after { background: none;}
+    }
+  }
   &__images {
     max-height: calc(90vh - 95px);
     .swiper-slide {
