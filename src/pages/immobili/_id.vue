@@ -8,7 +8,7 @@
               prismic-rich-text(:field="data.title")
               div.has-text-weight-bold.is-size-4.has-text-grey
                 span rif. {{ data.rif }}
-                span.has-text-weight-normal.is-size-6.ml-2 - Pubblicato il {{ data.date | date }}
+                span.has-text-weight-normal.is-size-6.ml-2.is-hidden - Pubblicato il {{ data.date | date }}
             h6.has-text-weight-bold.is-size-2.mb-0
               template(v-if="data.price") € {{ data.price }}
               div.is-size-3(v-else) Prezzo su richiesta
