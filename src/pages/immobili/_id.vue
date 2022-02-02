@@ -139,8 +139,7 @@ const stringsModule = namespace('strings')
     const { data } = this.$data
     return {
       ...seo(data, this.$route.path),
-      // script: [{ src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDqstP8RWMwkuJYsaWQ29dZFim3506MteA&language=it', async: true, defer: true }]
-      script: [{ src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCjrMNikptyuNaCOzgdxtg1ZXLPpnYGfqw&language=it', async: true, defer: true }]
+      script: [{ src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&language=it`, async: true, defer: true }]
     }
   }
 })

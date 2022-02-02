@@ -49,7 +49,8 @@ const config: Configuration = {
   env: {
     SITE_NAME: process.env.SITE_NAME!,
     DOMAIN: process.env.DOMAIN!,
-    DEFAULT_LOCALE: process.env.DEFAULT_LOCALE!
+    DEFAULT_LOCALE: process.env.DEFAULT_LOCALE!,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY!
   },
   prismic: {
     endpoint: process.env.PRISMIC_ENDPOINT,
