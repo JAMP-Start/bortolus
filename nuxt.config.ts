@@ -47,7 +47,7 @@ const config: Configuration = {
     systemvars: true
   },
   env: {
-    SITE_NAME: process.env.SITE_NAME!,
+    SITENAME: process.env.SITENAME!,
     DOMAIN: process.env.DOMAIN!,
     DEFAULT_LOCALE: process.env.DEFAULT_LOCALE!,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY!
