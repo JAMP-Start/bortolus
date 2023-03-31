@@ -1,12 +1,12 @@
 <template lang="pug">
-  section.section.has-text-centered
-    .container
-      .content
-        template(v-if="error.statusCode === 404")
-          h1 404
-          h2 {{ error.message }}
-        h2(v-else) An error occurred
-        nuxt-link.button.is-primary(to="/") Homepage
+section.section.has-text-centered
+  .container
+    .content
+      template(v-if="error.statusCode === 404")
+        h1 404
+        h2 {{ error.message }}
+      h2(v-else) An error occurred
+      nuxt-link.button.is-primary(to="/") Homepage
 </template>
 
 <script>
